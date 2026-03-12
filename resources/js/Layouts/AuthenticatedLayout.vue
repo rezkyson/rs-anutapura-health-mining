@@ -39,6 +39,18 @@ const showingNavigationDropdown = ref(false);
                                 >
                                     Dashboard
                                 </NavLink>
+                                <NavLink
+                                    :href="route('dataset.index')"
+                                    :active="route().current('dataset.*')"
+                                >
+                                    Dataset Admin
+                                </NavLink>
+                                <NavLink
+                                    :href="route('prediction.index')"
+                                    :active="route().current('prediction.*')"
+                                >
+                                    Prediksi Medis
+                                </NavLink>
                             </div>
                         </div>
 
@@ -145,6 +157,18 @@ const showingNavigationDropdown = ref(false);
                             :active="route().current('dashboard')"
                         >
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('dataset.index')"
+                            :active="route().current('dataset.*')"
+                        >
+                            Dataset Admin
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('prediction.index')"
+                            :active="route().current('prediction.*')"
+                        >
+                            Prediksi Medis
                         </ResponsiveNavLink>
                     </div>
 
