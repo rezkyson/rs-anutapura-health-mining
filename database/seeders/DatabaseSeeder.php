@@ -15,11 +15,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Membersihkan data user agar tidak error saat restart seed
+        User::truncate();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Admin RS Anutapura',
+            'email' => 'admin@rsap.id',
+            'password' => \Illuminate\Support\Facades\Hash::make('password')
+        ]);
+
+        User::factory()->create([
+            'name' => 'Dokter/Perawat Spesialis',
+            'email' => 'medis@rsap.id',
+            'password' => \Illuminate\Support\Facades\Hash::make('password')
         ]);
     }
 }
