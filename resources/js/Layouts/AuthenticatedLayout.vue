@@ -47,7 +47,7 @@ const page = usePage();
                                 Dashboard
                             </Link>
 
-                            <Link :href="route('dataset.index')"
+                            <Link v-if="$page.props.auth.user.id === 1" :href="route('dataset.index')"
                                 :class="[
                                     route().current('dataset.*') ? 'bg-white text-[#00AEEF] shadow-sm shadow-slate-200 border-white ring-1 ring-slate-100' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 border-transparent',
                                     'px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ease-out flex items-center gap-2 border'
@@ -123,7 +123,7 @@ const page = usePage();
             <div :class="{ 'max-h-96 opacity-100': showingNavigationDropdown, 'max-h-0 opacity-0': !showingNavigationDropdown }" class="sm:hidden overflow-hidden transition-all duration-300 ease-in-out bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-xl shadow-slate-200/50 absolute w-full z-50">
                 <div class="pt-2 pb-4 space-y-1 px-4">
                     <Link :href="route('dashboard')" :class="[route().current('dashboard') ? 'bg-[#00AEEF]/10 border-l-4 border-[#00AEEF] text-[#00AEEF]' : 'text-slate-600 hover:bg-slate-50 border-transparent', 'block pl-4 pr-4 py-3.5 font-bold text-base rounded-r-xl transition-all']">Dashboard</Link>
-                    <Link :href="route('dataset.index')" :class="[route().current('dataset.*') ? 'bg-[#00AEEF]/10 border-l-4 border-[#00AEEF] text-[#00AEEF]' : 'text-slate-600 hover:bg-slate-50 border-transparent', 'block pl-4 pr-4 py-3.5 font-bold text-base rounded-r-xl transition-all']">Manajemen Dataset</Link>
+                    <Link v-if="$page.props.auth.user.id === 1" :href="route('dataset.index')" :class="[route().current('dataset.*') ? 'bg-[#00AEEF]/10 border-l-4 border-[#00AEEF] text-[#00AEEF]' : 'text-slate-600 hover:bg-slate-50 border-transparent', 'block pl-4 pr-4 py-3.5 font-bold text-base rounded-r-xl transition-all']">Manajemen Dataset</Link>
                     <Link :href="route('prediction.index')" :class="[route().current('prediction.*') ? 'bg-[#00A651]/10 border-l-4 border-[#00A651] text-[#00A651]' : 'text-slate-600 hover:bg-slate-50 border-transparent', 'block pl-4 pr-4 py-3.5 font-bold text-base rounded-r-xl transition-all']">Prediksi Medis</Link>
                 </div>
                 <div class="pt-5 pb-3 border-t border-slate-100 bg-slate-50">

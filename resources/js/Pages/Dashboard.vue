@@ -60,14 +60,29 @@ const getMetricBgColor = (val) => {
                     </div>
                     <div class="ml-5">
                         <h3 class="text-xl font-bold text-amber-800">Evaluasi Model Belum Tersedia</h3>
-                        <div class="mt-2 text-amber-700 max-w-2xl font-medium leading-relaxed">
-                            <p>Sistem mendeteksi bahwa rasio data Latih (Training) atau data Uji (Testing) belum dikonfigurasi. Silakan masuk ke Manajemen Dataset untuk mengatur data operasional agar algoritma dapat diukur akurasinya.</p>
+                        
+                        <!-- Tampilan Admin -->
+                        <div v-if="$page.props.auth.user.id === 1">
+                            <div class="mt-2 text-amber-700 max-w-2xl font-medium leading-relaxed">
+                                <p>Sistem mendeteksi bahwa rasio data Latih (Training) atau data Uji (Testing) belum dikonfigurasi. Silakan masuk ke Manajemen Dataset untuk mengatur data operasional agar algoritma dapat diukur akurasinya.</p>
+                            </div>
+                            <div class="mt-5">
+                                <Link :href="route('dataset.index')" class="inline-flex items-center px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm rounded-xl transition-colors shadow-md shadow-amber-500/30">
+                                    Buka Manajemen Dataset
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 ml-2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                                </Link>
+                            </div>
                         </div>
-                        <div class="mt-5">
-                            <Link :href="route('dataset.index')" class="inline-flex items-center px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm rounded-xl transition-colors shadow-md shadow-amber-500/30">
-                                Buka Manajemen Dataset
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 ml-2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-                            </Link>
+
+                        <!-- Tampilan Medis -->
+                        <div v-else>
+                            <div class="mt-2 text-amber-700 max-w-2xl font-medium leading-relaxed">
+                                <p>Sistem mendeteksi bahwa rasio data Latih (Training) atau data Uji (Testing) belum dikonfigurasi. Penyesuaian konfigurasi ini hanya bisa dikelola dan dilakukan oleh Administrator IT.</p>
+                            </div>
+                            <div class="mt-5 flex items-center gap-2 text-amber-700 font-bold bg-amber-200/50 px-4 py-2.5 rounded-xl border border-amber-300/50 inline-flex shadow-inner">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 opacity-70"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+                                Hubungi Administrator untuk Memuat Dataset
+                            </div>
                         </div>
                     </div>
                 </div>

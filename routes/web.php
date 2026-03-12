@@ -27,11 +27,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Dataset Management (Admin)
-    Route::get('/dataset', [PatientDatasetController::class, 'index'])->name('dataset.index');
-    Route::post('/dataset/import', [PatientDatasetController::class, 'import'])->name('dataset.import');
-    Route::patch('/dataset/{dataset}/split', [PatientDatasetController::class, 'setSplit'])->name('dataset.split');
-    Route::delete('/dataset/{dataset}', [PatientDatasetController::class, 'destroy'])->name('dataset.destroy');
-    Route::delete('/dataset', [PatientDatasetController::class, 'truncate'])->name('dataset.truncate');
+    // Dataset Management (Admin)
+    Route::middleware(\App\Http\Middleware\AdminOnly::class)->group(function () {
+        Route::get('/dataset', [PatientDatasetController::class, 'index'])->name('dataset.index');
+        Route::post('/dataset/import', [PatientDatasetController::class, 'import'])->name('dataset.import');
+        Route::patch('/dataset/{dataset}/split', [PatientDatasetController::class, 'setSplit'])->name('dataset.split');
+        Route::delete('/dataset/{dataset}', [PatientDatasetController::class, 'destroy'])->name('dataset.destroy');
+        Route::delete('/dataset', [PatientDatasetController::class, 'truncate'])->name('dataset.truncate');
+    });
 
     // Prediction Form (Medical)
     Route::get('/prediction', [PredictionController::class, 'index'])->name('prediction.index');
