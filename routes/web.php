@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
         Route::patch('/dataset/{dataset}/split', [PatientDatasetController::class, 'setSplit'])->name('dataset.split');
         Route::delete('/dataset/{dataset}', [PatientDatasetController::class, 'destroy'])->name('dataset.destroy');
         Route::delete('/dataset', [PatientDatasetController::class, 'truncate'])->name('dataset.truncate');
+        Route::post('/dataset/auto-split', [PatientDatasetController::class, 'autoSplit'])->name('dataset.autoSplit');
     });
 
     // Prediction Form (Medical)

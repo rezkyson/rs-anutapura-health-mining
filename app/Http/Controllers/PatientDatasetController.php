@@ -15,7 +15,7 @@ class PatientDatasetController extends Controller
      */
     public function index(): Response
     {
-        $datasets = PatientDataset::latest()->paginate(20);
+        $datasets = PatientDataset::orderBy('id', 'asc')->paginate(20);
         $totalTraining = PatientDataset::where('is_training', true)->count();
         $totalTesting = PatientDataset::where('is_training', false)->count();
 
@@ -60,14 +60,22 @@ class PatientDatasetController extends Controller
                 
                 $data = array_combine($header, $row);
                 
+                // Menerima Format English atau Indonesia
+                $age = $data['age'] ?? $data['usia'] ?? null;
+                $gender = $data['gender'] ?? $data['jenis_kelamin'] ?? null;
+                $bp = $data['blood_pressure'] ?? $data['tekanan_darah'] ?? null;
+                $chol = $data['cholesterol'] ?? $data['kolesterol'] ?? null;
+                $sugar = $data['blood_sugar'] ?? $data['gula_darah'] ?? null;
+                $risk = $data['risk_result'] ?? $data['risiko'] ?? null;
+
                 // Preprocessing: Cek apakah nilai kosong
                 if (
-                    !isset($data['age']) || $data['age'] === '' ||
-                    !isset($data['gender']) || $data['gender'] === '' ||
-                    !isset($data['blood_pressure']) || $data['blood_pressure'] === '' ||
-                    !isset($data['cholesterol']) || $data['cholesterol'] === '' ||
-                    !isset($data['blood_sugar']) || $data['blood_sugar'] === '' ||
-                    !isset($data['risk_result']) || $data['risk_result'] === ''
+                    $age === null || $age === '' ||
+                    $gender === null || $gender === '' ||
+                    $bp === null || $bp === '' ||
+                    $chol === null || $chol === '' ||
+                    $sugar === null || $sugar === '' ||
+                    $risk === null || $risk === ''
                 ) {
                     $nullSkippedCount++;
                     continue;
@@ -75,13 +83,21 @@ class PatientDatasetController extends Controller
 
                 $isTraining = isset($data['is_training']) ? filter_var($data['is_training'], FILTER_VALIDATE_BOOLEAN) : true;
 
+                // Konversi kode gender RS: 1=Laki-laki→L, 0=Perempuan→P
+                $genderVal = trim($gender);
+                if ($genderVal === '1' || strtoupper($genderVal) === 'L' || strtoupper($genderVal) === 'LAKI-LAKI') {
+                    $genderVal = 'L';
+                } else {
+                    $genderVal = 'P';
+                }
+
                 PatientDataset::create([
-                    'age' => (int) $data['age'],
-                    'gender' => strtoupper(trim($data['gender'])),
-                    'blood_pressure' => (int) $data['blood_pressure'],
-                    'cholesterol' => (int) $data['cholesterol'],
-                    'blood_sugar' => (int) $data['blood_sugar'],
-                    'risk_result' => filter_var($data['risk_result'], FILTER_VALIDATE_BOOLEAN),
+                    'age' => (int) $age,
+                    'gender' => $genderVal,
+                    'blood_pressure' => (int) $bp,
+                    'cholesterol' => (int) $chol,
+                    'blood_sugar' => (int) $sugar,
+                    'risk_result' => filter_var($risk, FILTER_VALIDATE_BOOLEAN),
                     'is_training' => $isTraining
                 ]);
 
@@ -128,5 +144,36 @@ class PatientDatasetController extends Controller
     {
         PatientDataset::truncate();
         return redirect()->back()->with('status', 'Seluruh dataset berhasil dihapus.');
+    }
+
+    /**
+     * Bagi dataset otomatis: 80% Training, 20% Testing
+     */
+    public function autoSplit(Request $request)
+    {
+        $ratio = $request->input('ratio', 80); // default 80% training
+        $ratio = max(50, min(90, (int) $ratio)); // batasi antara 50-90%
+
+        $allIds = PatientDataset::pluck('id')->toArray();
+        $total = count($allIds);
+
+        if ($total === 0) {
+            return redirect()->back()->withErrors(['split' => 'Tidak ada data untuk dibagi.']);
+        }
+
+        // Acak urutan ID
+        shuffle($allIds);
+
+        $trainingCount = (int) round($total * $ratio / 100);
+        $trainingIds = array_slice($allIds, 0, $trainingCount);
+        $testingIds = array_slice($allIds, $trainingCount);
+
+        // Update seluruh data sekaligus
+        PatientDataset::whereIn('id', $trainingIds)->update(['is_training' => true]);
+        PatientDataset::whereIn('id', $testingIds)->update(['is_training' => false]);
+
+        $testingCount = count($testingIds);
+
+        return redirect()->back()->with('status', "Dataset berhasil dibagi: {$trainingCount} data latih ({$ratio}%) dan {$testingCount} data uji (" . (100 - $ratio) . "%).");
     }
 }

@@ -47,6 +47,16 @@ const toggleTrainingStatus = (id, currentStatus) => {
 const defaultClassBackground = (val) => {
     return val === 1 ? 'bg-rose-50 text-rose-600 border-rose-100' : 'bg-[#00A651]/10 text-[#00A651] border-[#00A651]/20';
 };
+
+const isSplitting = ref(false);
+const autoSplit = () => {
+    if (!confirm('Sistem akan membagi dataset secara acak: 80% Data Latih dan 20% Data Uji. Lanjutkan?')) return;
+    isSplitting.value = true;
+    router.post(route('dataset.autoSplit'), { ratio: 80 }, {
+        preserveScroll: true,
+        onFinish: () => isSplitting.value = false
+    });
+};
 </script>
 
 <template>
@@ -61,10 +71,14 @@ const defaultClassBackground = (val) => {
                 </div>
                 
                 <!-- Action Header (Clear All) -->
-                <div class="mt-4 sm:mt-0" v-if="stats.total > 0">
+                <div class="mt-4 sm:mt-0 flex items-center gap-3" v-if="stats.total > 0">
+                    <button @click="autoSplit" :disabled="isSplitting" class="group flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#00AEEF] to-[#00A651] hover:from-[#00AEEF]/90 hover:to-[#00A651]/90 rounded-xl text-white font-bold text-sm transition-all shadow-md shadow-[#00AEEF]/20 focus:outline-none focus:ring-2 focus:ring-[#00AEEF]/50 disabled:opacity-50">
+                        <svg class="h-4 w-4 group-hover:scale-110 transition-transform" :class="{ 'animate-spin': isSplitting }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                        {{ isSplitting ? 'Memproses...' : 'Bagi Data Otomatis (80:20)' }}
+                    </button>
                     <button @click="router.delete(route('dataset.truncate'), { preserveScroll: true })" class="group flex items-center gap-2 px-4 py-2 bg-white hover:bg-rose-50 border border-slate-200 hover:border-rose-200 rounded-xl text-rose-600 font-bold text-sm transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500/50">
                         <svg class="h-4 w-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                        Kosongkan Seluruh Data
+                        Kosongkan Data
                     </button>
                 </div>
             </div>
@@ -180,12 +194,12 @@ const defaultClassBackground = (val) => {
                                 <td class="py-4 px-6 font-bold text-slate-400">#{{ d.id }}</td>
                                 <td class="py-4 px-6">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs shrink-0" :class="d.gender === 1 ? 'bg-blue-50 text-blue-600 border border-blue-100' : 'bg-pink-50 text-pink-600 border border-pink-100'">
-                                            {{ d.gender === 1 ? 'L' : 'P' }}
+                                        <div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs shrink-0" :class="d.gender === 'L' ? 'bg-blue-50 text-blue-600 border border-blue-100' : 'bg-pink-50 text-pink-600 border border-pink-100'">
+                                            {{ d.gender === 'L' ? 'L' : 'P' }}
                                         </div>
                                         <div class="flex flex-col">
                                             <span class="font-bold text-slate-700">{{ d.age }} Tahun</span>
-                                            <span class="text-[10px] uppercase font-bold text-slate-400">{{ d.gender === 1 ? 'Laki-laki' : 'Perempuan' }}</span>
+                                            <span class="text-[10px] uppercase font-bold text-slate-400">{{ d.gender === 'L' ? 'Laki-laki' : 'Perempuan' }}</span>
                                         </div>
                                     </div>
                                 </td>

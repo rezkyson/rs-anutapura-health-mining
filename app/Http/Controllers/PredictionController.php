@@ -19,9 +19,13 @@ class PredictionController extends Controller
     /**
      * Tampilkan form prediksi untuk tenaga medis.
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        return Inertia::render('Medical/Prediction/Index');
+        return Inertia::render('Medical/Prediction/Index', [
+            'result' => session('result'),
+            'probabilities' => session('probabilities'),
+            'log_probabilities' => session('log_probabilities'),
+        ]);
     }
 
     /**
@@ -34,13 +38,37 @@ class PredictionController extends Controller
             'gender' => 'required|in:L,P',
             'blood_pressure' => 'required|integer|min:30|max:250',
             'cholesterol' => 'required|integer|min:50|max:600',
-            'blood_sugar' => 'required|integer|min:30|max:500',
+            'blood_sugar' => 'required|in:0,1',
         ]);
 
         // Proses prediksi via Naive Bayes Service
         $result = $this->naiveBayesService->predict($validatedData);
 
-        // Kembalikan ke halaman form dengan data hasil (sebagai flash session)
-        return redirect()->back()->with('prediction_result', $result);
+        $log1 = $result['probabilities']['beresiko_score'];
+        $log0 = $result['probabilities']['tidak_beresiko_score'];
+
+        // Konversi log-probabilitas kembali menjadi probabilitas persentase (Normalisasi)
+        $maxLog = max($log1, $log0);
+        $p1 = exp($log1 - $maxLog);
+        $p0 = exp($log0 - $maxLog);
+        $sum = $p1 + $p0;
+
+        $prob1 = $p1 / $sum;
+        $prob0 = $p0 / $sum;
+
+        // Kembalikan ke halaman form dengan data hasil via Flash Session
+        return redirect()->back()->with([
+            'result' => [
+                'prediction' => $result['prediction_value'],
+            ],
+            'probabilities' => [
+                1 => $prob1,
+                0 => $prob0,
+            ],
+            'log_probabilities' => [
+                1 => $log1,
+                0 => $log0,
+            ]
+        ]);
     }
 }
