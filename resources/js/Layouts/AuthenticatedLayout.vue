@@ -3,19 +3,22 @@ import { ref } from 'vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import { Link, usePage } from '@inertiajs/vue3';
+import DarkModeToggle from '@/Components/DarkModeToggle.vue';
+import { useDarkMode } from '@/Composables/useDarkMode';
 
 const showingNavigationDropdown = ref(false);
 const page = usePage();
+useDarkMode(); // Initialize dark mode on layout mount
 </script>
 
 <template>
-    <div class="min-h-screen bg-slate-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50/40 via-slate-50 to-slate-50 font-sans text-slate-900 antialiased selection:bg-[#00AEEF] selection:text-white relative z-0">
+    <div class="min-h-screen bg-slate-50 dark:bg-[#061121] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50/40 via-slate-50 to-slate-50 dark:from-[#0A192F] dark:via-[#061121] dark:to-[#061121] font-sans text-slate-900 dark:text-slate-100 antialiased selection:bg-[#00AEEF] selection:text-white relative z-0 transition-colors duration-500">
         
         <!-- Abstract Dot Map Background behind the entire page -->
-        <div class="fixed inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHRleHQgeD0iMCIgeT0iMTIiIGZpbGw9InJnYmEoMTQ4LCAxNjMsIDE4NCLCAwLjI1KSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjBweCI+LjwvdGV4dD48L3N2Zz4=')] bg-[length:24px_24px] pointer-events-none -z-10 opacity-30 mix-blend-multiply"></div>
+        <div class="fixed inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHRleHQgeD0iMCIgeT0iMTIiIGZpbGw9InJnYmEoMTQ4LCAxNjMsIDE4NCLCAwLjI1KSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjBweCI+LjwvdGV4dD48L3N2Zz4=')] dark:opacity-10 bg-[length:24px_24px] pointer-events-none -z-10 opacity-30 mix-blend-multiply"></div>
 
         <!-- Floating Modern Navbar -->
-        <nav class="sticky top-0 z-50 w-full backdrop-blur-xl bg-white/80 border-b border-slate-200/80 shadow-sm transition-all duration-300">
+        <nav class="sticky top-0 z-50 w-full backdrop-blur-xl bg-white/80 dark:bg-[#0A192F]/80 border-b border-slate-200/80 dark:border-slate-800 transition-all duration-300">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-[5.5rem] items-center">
                     
@@ -32,16 +35,16 @@ const page = usePage();
                                 </div>
                             </div>
                             <div class="flex flex-col">
-                                <span class="font-extrabold text-2xl tracking-tight text-slate-800 leading-none">Anutapura</span>
+                                <span class="font-extrabold text-2xl tracking-tight text-slate-800 dark:text-white leading-none">Anutapura</span>
                                 <span class="text-xs font-bold text-[#00A651] tracking-[0.2em] uppercase mt-1 opacity-90">Data Mining</span>
                             </div>
                         </Link>
 
                         <!-- Desktop Navigation Links (Pill Style) -->
-                        <div class="hidden sm:flex sm:items-center sm:gap-2 p-1.5 bg-slate-100/60 rounded-full border border-slate-200/60 shadow-inner">
+                        <div class="hidden sm:flex sm:items-center sm:gap-2 p-1.5 bg-slate-100/60 dark:bg-slate-800/60 rounded-full border border-slate-200/60 dark:border-slate-700/60 shadow-inner">
                             <Link :href="route('dashboard')"
                                 :class="[
-                                    route().current('dashboard') ? 'bg-white text-[#00AEEF] shadow-sm shadow-slate-200 border-white ring-1 ring-slate-100' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 border-transparent',
+                                    route().current('dashboard') ? 'bg-white dark:bg-slate-900 text-[#00AEEF] shadow-sm shadow-slate-200 dark:shadow-black border-white dark:border-slate-700 ring-1 ring-slate-100 dark:ring-slate-800' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800 border-transparent',
                                     'px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ease-out border'
                                 ]">
                                 Dashboard
@@ -49,7 +52,7 @@ const page = usePage();
 
                             <Link v-if="$page.props.auth.user.id === 1" :href="route('dataset.index')"
                                 :class="[
-                                    route().current('dataset.*') ? 'bg-white text-[#00AEEF] shadow-sm shadow-slate-200 border-white ring-1 ring-slate-100' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 border-transparent',
+                                    route().current('dataset.*') ? 'bg-white dark:bg-slate-900 text-[#00AEEF] shadow-sm shadow-slate-200 dark:shadow-black border-white dark:border-slate-700 ring-1 ring-slate-100 dark:ring-slate-800' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800 border-transparent',
                                     'px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ease-out flex items-center gap-2 border'
                                 ]">
                                 Dataset Center
@@ -57,7 +60,7 @@ const page = usePage();
 
                             <Link :href="route('prediction.index')"
                                 :class="[
-                                    route().current('prediction.*') ? 'bg-[#00A651]/10 text-[#00A651] shadow-sm shadow-[#00A651]/10 ring-1 ring-[#00A651]/20 border-transparent' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 border-transparent',
+                                    route().current('prediction.*') ? 'bg-[#00A651]/10 text-[#00A651] shadow-sm shadow-[#00A651]/10 ring-1 ring-[#00A651]/20 border-transparent' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800 border-transparent',
                                     'px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ease-out flex items-center gap-2 border'
                                 ]">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4" :class="route().current('prediction.*') ? 'text-[#00A651]' : 'text-slate-400'"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
@@ -66,21 +69,24 @@ const page = usePage();
                         </div>
                     </div>
 
-                    <!-- Right Side: User Dropdown -->
-                    <div class="hidden sm:flex sm:items-center">
+                    <!-- Right Side: Dark Mode & User Dropdown -->
+                    <div class="hidden sm:flex sm:items-center sm:gap-6">
+                        <!-- Dark Mode Toggle Button -->
+                        <DarkModeToggle />
+
                         <div class="relative">
                             <Dropdown align="right" width="56">
                                 <template #trigger>
-                                    <button type="button" class="group flex items-center gap-3 pr-4 p-1.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#00AEEF]/30 ring-offset-2 ring-offset-slate-50">
+                                    <button type="button" class="group flex items-center gap-3 pr-4 p-1.5 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#00AEEF]/30 ring-offset-2 ring-offset-slate-50 dark:ring-offset-[#0A192F]">
                                         <!-- Real Avatar via API -->
-                                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-slate-500 font-bold overflow-hidden border border-slate-100 shadow-sm transition-transform group-hover:scale-105 shrink-0">
+                                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-slate-500 font-bold overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm transition-transform group-hover:scale-105 shrink-0">
                                             <img :src="`https://ui-avatars.com/api/?name=${$page.props.auth.user.name}&background=0A192F&color=fff&rounded=true&bold=true`" alt="Avatar" class="w-full h-full object-cover"/>
                                         </div>
                                         <div class="flex flex-col items-start pt-0.5 max-w-[120px]">
-                                            <span class="text-[13px] font-bold text-slate-700 leading-none group-hover:text-[#00AEEF] transition-colors truncate w-full text-left">{{ $page.props.auth.user.name }}</span>
-                                            <span class="text-[10px] text-slate-400 font-medium tracking-wide mt-1 uppercase">{{ $page.props.auth.user.id === 1 ? 'Administrator' : 'Staf Medis' }}</span>
+                                            <span class="text-[13px] font-bold text-slate-700 dark:text-slate-200 leading-none group-hover:text-[#00AEEF] dark:group-hover:text-[#00AEEF] transition-colors truncate w-full text-left">{{ $page.props.auth.user.name }}</span>
+                                            <span class="text-[10px] text-slate-400 dark:text-slate-500 font-medium tracking-wide mt-1 uppercase">{{ $page.props.auth.user.id === 1 ? 'Administrator' : 'Staf Medis' }}</span>
                                         </div>
-                                        <svg class="w-4 h-4 text-slate-300 ml-1 group-hover:text-slate-500 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <svg class="w-4 h-4 text-slate-300 dark:text-slate-600 ml-1 group-hover:text-slate-500 transition-colors duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                         </svg>
                                     </button>

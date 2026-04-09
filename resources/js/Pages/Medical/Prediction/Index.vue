@@ -47,7 +47,7 @@ const resetPrediction = () => {
         <template #header>
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between py-2">
                 <div>
-                    <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Sistem Deteksi Dini</h2>
+                    <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight dark:text-slate-100">Sistem Deteksi Dini</h2>
                     <p class="text-sm font-medium text-slate-500 mt-0.5">Penilaian Risiko Kardiovaskular Berbasis Naive Bayes</p>
                 </div>
             </div>
@@ -55,14 +55,14 @@ const resetPrediction = () => {
 
         <div class="space-y-8 pb-10">
             <!-- Medical Disclaimer Banner -->
-            <div class="bg-gradient-to-r from-blue-50 to-indigo-50/50 border border-blue-100 rounded-2xl p-5 flex items-start sm:items-center gap-4 shadow-sm relative overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-50 dark:from-blue-900/30 to-indigo-50/50 dark:to-indigo-900/20 border border-blue-100 dark:border-blue-800/50 rounded-2xl p-5 flex items-start sm:items-center gap-4 shadow-sm relative overflow-hidden">
                 <div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-500/10 blur-xl mix-blend-multiply rounded-full pointer-events-none"></div>
-                <div class="bg-white p-3 rounded-full shadow-sm text-blue-600 shrink-0 border border-blue-100/50 relative z-10">
+                <div class="bg-white dark:bg-slate-800 p-3 rounded-full shadow-sm text-blue-600 dark:text-blue-400 shrink-0 border border-blue-100/50 dark:border-blue-800/50 relative z-10">
                     <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                 </div>
                 <div class="relative z-10">
-                    <h4 class="font-black text-blue-900 text-sm tracking-wide">PERHATIAN KLINIS</h4>
-                    <p class="text-[13px] text-blue-800/80 leading-relaxed font-medium mt-1">
+                    <h4 class="font-black text-blue-900 dark:text-blue-300 text-sm tracking-wide">PERHATIAN KLINIS</h4>
+                    <p class="text-[13px] text-blue-800/80 dark:text-blue-200/70 leading-relaxed font-medium mt-1">
                         Modul ini dirancang secara eksklusif sebagai <strong>Sistem Pendukung Keputusan (DSS)</strong> untuk membantu spesialis medis. Prediksi berbasis probabilitas ini <strong>TIDAK DAPAT menggantikan penilaian medis, diagnosis formal, atau saran dari dokter bersertifikat.</strong>
                     </p>
                 </div>
@@ -72,17 +72,17 @@ const resetPrediction = () => {
                 
                 <!-- Left Column: Patient Data Entry (EMR Style) -->
                 <div class="xl:col-span-7">
-                    <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden relative group transition-shadow hover:shadow-xl hover:shadow-slate-200/50">
+                    <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden relative group transition-shadow hover:shadow-xl hover:shadow-slate-200/50 dark:hover:shadow-slate-900/50">
                         
                         <!-- Header Bar -->
-                        <div class="px-8 py-6 border-b border-slate-100 bg-slate-50/30 flex items-center justify-between">
-                            <h3 class="text-lg font-extrabold text-slate-800 flex items-center gap-3">
-                                <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center border border-indigo-100">
+                        <div class="px-8 py-6 border-b border-slate-100 dark:border-slate-700/60 bg-slate-50/30 dark:bg-slate-800/80 flex items-center justify-between">
+                            <h3 class="text-lg font-extrabold text-slate-800 dark:text-slate-100 flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-500 border border-indigo-100 dark:border-indigo-800 flex items-center justify-center">
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                                 </div>
                                 Profil Input Pasien
                             </h3>
-                            <button @click="form.reset()" type="button" class="text-xs font-bold text-slate-400 hover:text-slate-600 transition-colors uppercase tracking-widest border border-slate-200 rounded-lg px-3 py-1.5 hover:bg-slate-50 focus:outline-none">Reset Parameter</button>
+                            <button @click="form.reset()" type="button" class="text-xs font-bold text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors uppercase tracking-widest border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-1.5 hover:bg-slate-50 dark:hover:bg-slate-700 focus:outline-none">Reset Parameter</button>
                         </div>
 
                         <!-- Form Content -->
@@ -96,23 +96,23 @@ const resetPrediction = () => {
                                     </h4>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div class="space-y-1.5 focus-within:text-[#00AEEF] transition-colors">
-                                            <label for="age" class="block font-bold text-slate-700 text-sm">Usia (Tahun)</label>
-                                            <input type="number" id="age" v-model="form.age" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-[#00AEEF] focus:border-[#00AEEF] focus:bg-white text-slate-800 transition-all font-bold placeholder-slate-300 shadow-sm" placeholder="Contoh: 45" required min="1" max="120">
+                                            <label for="age" class="block font-bold text-slate-700 dark:text-slate-300 text-sm">Usia (Tahun)</label>
+                                            <input type="number" id="age" v-model="form.age" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-[#00AEEF] focus:border-[#00AEEF] focus:bg-white dark:focus:bg-slate-800 text-slate-800 dark:text-slate-100 transition-all font-bold placeholder-slate-300 dark:placeholder-slate-600 shadow-sm" placeholder="Contoh: 45" required min="1" max="120">
                                         </div>
                                         
                                         <div class="space-y-1.5">
-                                            <label class="block font-bold text-slate-700 text-sm">Jenis Kelamin</label>
+                                            <label class="block font-bold text-slate-700 dark:text-slate-300 text-sm">Jenis Kelamin</label>
                                             <div class="grid grid-cols-2 gap-3 mt-1">
-                                                <label class="relative flex cursor-pointer rounded-xl bg-slate-50 border border-slate-200 p-3 shadow-sm hover:bg-white hover:border-[#00AEEF]/50 transition-all has-[:checked]:bg-blue-50 has-[:checked]:border-[#00AEEF] has-[:checked]:ring-1 has-[:checked]:ring-[#00AEEF] group">
+                                                <label class="relative flex cursor-pointer rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-3 shadow-sm hover:bg-white dark:hover:bg-slate-800 hover:border-[#00AEEF]/50 transition-all has-[:checked]:bg-blue-50 dark:has-[:checked]:bg-blue-900/30 has-[:checked]:border-[#00AEEF] has-[:checked]:ring-1 has-[:checked]:ring-[#00AEEF] group">
                                                     <input type="radio" v-model="form.gender" value="L" class="sr-only" required>
-                                                    <span class="flex-1 flex text-sm font-bold items-center justify-center gap-2 text-slate-600 group-hover:text-slate-800 transition-colors">
+                                                    <span class="flex-1 flex text-sm font-bold items-center justify-center gap-2 text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200 transition-colors">
                                                         <svg class="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                                                         Laki-laki (1)
                                                     </span>
                                                 </label>
-                                                <label class="relative flex cursor-pointer rounded-xl bg-slate-50 border border-slate-200 p-3 shadow-sm hover:bg-white hover:border-pink-400/50 transition-all has-[:checked]:bg-pink-50 has-[:checked]:border-pink-500 has-[:checked]:ring-1 has-[:checked]:ring-pink-500 group">
+                                                <label class="relative flex cursor-pointer rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-3 shadow-sm hover:bg-white dark:hover:bg-slate-800 hover:border-pink-400/50 transition-all has-[:checked]:bg-pink-50 dark:has-[:checked]:bg-pink-900/30 has-[:checked]:border-pink-500 has-[:checked]:ring-1 has-[:checked]:ring-pink-500 group">
                                                     <input type="radio" v-model="form.gender" value="P" class="sr-only" required>
-                                                    <span class="flex-1 flex text-sm font-bold items-center justify-center gap-2 text-slate-600 group-hover:text-slate-800 transition-colors">
+                                                    <span class="flex-1 flex text-sm font-bold items-center justify-center gap-2 text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200 transition-colors">
                                                         <svg class="w-4 h-4 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4h.252c1.042-.016 2.071.21 3.003.655l.08.038z" /></svg>
                                                         Perempuan (0)
                                                     </span>
@@ -122,7 +122,7 @@ const resetPrediction = () => {
                                     </div>
                                 </div>
                                 
-                                <hr class="border-slate-100">
+                                <hr class="border-slate-100 dark:border-slate-700">
 
                                 <!-- Clinical Markers -->
                                 <div>
@@ -133,18 +133,18 @@ const resetPrediction = () => {
                                     <div class="space-y-5">
                                         <!-- Blood Sugar -->
                                         <div>
-                                            <label class="font-bold text-slate-700 text-sm mb-2 block">Gula Darah Puasa</label>
+                                            <label class="font-bold text-slate-700 dark:text-slate-300 text-sm mb-2 block">Gula Darah Puasa</label>
                                             <div class="grid grid-cols-2 gap-3 mt-1">
-                                                <label class="relative flex cursor-pointer rounded-xl bg-slate-50 border border-slate-200 p-3 shadow-sm hover:bg-white hover:border-[#00A651]/50 transition-all has-[:checked]:bg-emerald-50 has-[:checked]:border-[#00A651] has-[:checked]:ring-1 has-[:checked]:ring-[#00A651] group">
+                                                <label class="relative flex cursor-pointer rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-3 shadow-sm hover:bg-white dark:hover:bg-slate-800 hover:border-[#00A651]/50 transition-all has-[:checked]:bg-emerald-50 dark:has-[:checked]:bg-emerald-900/30 has-[:checked]:border-[#00A651] has-[:checked]:ring-1 has-[:checked]:ring-[#00A651] group">
                                                     <input type="radio" v-model="form.blood_sugar" value="0" class="sr-only" required>
-                                                    <span class="flex-1 flex text-sm font-bold items-center justify-center gap-2 text-slate-600 group-hover:text-slate-800 transition-colors">
+                                                    <span class="flex-1 flex text-sm font-bold items-center justify-center gap-2 text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200 transition-colors">
                                                         <svg class="w-4 h-4 text-[#00A651]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                                         Normal (0)
                                                     </span>
                                                 </label>
-                                                <label class="relative flex cursor-pointer rounded-xl bg-slate-50 border border-slate-200 p-3 shadow-sm hover:bg-white hover:border-rose-400/50 transition-all has-[:checked]:bg-rose-50 has-[:checked]:border-rose-500 has-[:checked]:ring-1 has-[:checked]:ring-rose-500 group">
+                                                <label class="relative flex cursor-pointer rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-3 shadow-sm hover:bg-white dark:hover:bg-slate-800 hover:border-rose-400/50 transition-all has-[:checked]:bg-rose-50 dark:has-[:checked]:bg-rose-900/30 has-[:checked]:border-rose-500 has-[:checked]:ring-1 has-[:checked]:ring-rose-500 group">
                                                     <input type="radio" v-model="form.blood_sugar" value="1" class="sr-only" required>
-                                                    <span class="flex-1 flex text-sm font-bold items-center justify-center gap-2 text-slate-600 group-hover:text-slate-800 transition-colors">
+                                                    <span class="flex-1 flex text-sm font-bold items-center justify-center gap-2 text-slate-600 dark:text-slate-400 group-hover:text-slate-800 dark:group-hover:text-slate-200 transition-colors">
                                                         <svg class="w-4 h-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                                                         Tinggi (1)
                                                     </span>
@@ -155,21 +155,21 @@ const resetPrediction = () => {
 
                                         <!-- Blood Pressure -->
                                         <div>
-                                            <label for="blood_pressure" class="font-bold text-slate-700 text-sm mb-2 block flex items-center justify-between">
+                                            <label for="blood_pressure" class="font-bold text-slate-700 dark:text-slate-300 text-sm mb-2 block flex items-center justify-between">
                                                 Tekanan Darah (Sistolik)
-                                                <span class="text-xs font-semibold text-slate-400 bg-slate-100 px-2 py-0.5 rounded uppercase">mmHg</span>
+                                                <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded uppercase">mmHg</span>
                                             </label>
-                                            <input type="number" id="blood_pressure" v-model="form.blood_pressure" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-[#00AEEF] focus:border-[#00AEEF] focus:bg-white text-slate-800 transition-all font-bold placeholder-slate-300 shadow-sm" placeholder="Contoh: 120" required min="50" max="250">
+                                            <input type="number" id="blood_pressure" v-model="form.blood_pressure" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-[#00AEEF] focus:border-[#00AEEF] focus:bg-white dark:focus:bg-slate-800 text-slate-800 dark:text-slate-100 transition-all font-bold placeholder-slate-300 dark:placeholder-slate-600 shadow-sm" placeholder="Contoh: 120" required min="50" max="250">
                                             <p class="text-[11px] text-slate-400 mt-1 font-medium">*Masukkan tekanan darah sistolik dominan (atas)</p>
                                         </div>
 
                                         <!-- Cholesterol -->
                                         <div>
-                                            <label for="cholesterol" class="font-bold text-slate-700 text-sm mb-2 block flex items-center justify-between">
+                                            <label for="cholesterol" class="font-bold text-slate-700 dark:text-slate-300 text-sm mb-2 block flex items-center justify-between">
                                                 Kadar Kolesterol
-                                                <span class="text-xs font-semibold text-slate-400 bg-slate-100 px-2 py-0.5 rounded uppercase">mg/dl</span>
+                                                <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded uppercase">mg/dl</span>
                                             </label>
-                                            <input type="number" id="cholesterol" v-model="form.cholesterol" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-[#00AEEF] focus:border-[#00AEEF] focus:bg-white text-slate-800 transition-all font-bold placeholder-slate-300 shadow-sm" placeholder="Contoh: 210" required min="50" max="600">
+                                            <input type="number" id="cholesterol" v-model="form.cholesterol" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-[#00AEEF] focus:border-[#00AEEF] focus:bg-white dark:focus:bg-slate-800 text-slate-800 dark:text-slate-100 transition-all font-bold placeholder-slate-300 dark:placeholder-slate-600 shadow-sm" placeholder="Contoh: 210" required min="50" max="600">
                                             <p class="text-[11px] text-slate-400 mt-1 font-medium">*Angka spesifik kolesterol total pasien</p>
                                         </div>
                                     </div>
@@ -220,7 +220,7 @@ const resetPrediction = () => {
                         </div>
 
                         <!-- Result Ready State -->
-                        <div v-else-if="result" class="bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col min-h-[550px] animate-fade-in-up">
+                        <div v-else-if="result" class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-700 flex flex-col min-h-[550px] animate-fade-in-up">
                             
                             <!-- Dynamic Result Header -->
                             <div class="relative p-10 flex flex-col items-center justify-center text-center overflow-hidden transition-colors duration-500" :class="result.prediction === 1 ? 'bg-gradient-to-b from-rose-600 to-rose-700 border-b border-rose-800' : 'bg-gradient-to-b from-[#00A651] to-emerald-700 border-b border-emerald-800'">
@@ -240,7 +240,7 @@ const resetPrediction = () => {
                             </div>
 
                             <!-- Diagnostic Details -->
-                            <div class="flex-1 p-8 flex flex-col justify-between bg-white relative">
+                            <div class="flex-1 p-8 flex flex-col justify-between bg-white dark:bg-slate-800 relative">
                                 
                                 <div>
                                     <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2">
@@ -285,7 +285,7 @@ const resetPrediction = () => {
                                     </div>
                                     
                                     <!-- Explaination box -->
-                                    <div class="mt-8 p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-start gap-3">
+                                    <div class="mt-8 p-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl flex items-start gap-3">
                                         <svg class="h-5 w-5 text-indigo-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                         <p class="text-[11px] font-semibold text-slate-500 leading-relaxed uppercase tracking-wider">
                                             Kesimpulan prediksi diambil dengan membandingkan persentase Berisiko vs Aman. Hasil akhir ditentukan oleh nilai persentase yang paling besar.
@@ -294,7 +294,7 @@ const resetPrediction = () => {
                                 </div>
                                 
                                 <!-- Button to clear/print -->
-                                <button type="button" @click="resetPrediction" class="w-full mt-8 flex justify-center py-3.5 px-4 rounded-xl text-sm font-bold text-slate-600 bg-white border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all focus:outline-none">
+                                <button type="button" @click="resetPrediction" class="w-full mt-8 flex justify-center py-3.5 px-4 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 hover:border-slate-300 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-slate-600 transition-all focus:outline-none">
                                     Lakukan Prediksi Baru
                                 </button>
                             </div>

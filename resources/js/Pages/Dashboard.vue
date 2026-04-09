@@ -31,16 +31,16 @@ const getMetricBgColor = (val) => {
         <template #header>
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between py-2">
                 <div>
-                    <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Sistem Monitoring</h2>
+                    <h2 class="text-2xl font-extrabold text-slate-800 dark:text-white tracking-tight">Sistem Monitoring</h2>
                     <p class="text-sm font-medium text-slate-500 mt-0.5">Evaluasi Performa & Metrik Algoritma Klasifikasi Jantung</p>
                 </div>
                 
                 <div class="mt-4 sm:mt-0 flex items-center gap-3">
-                    <div class="px-4 py-2 bg-white rounded-xl shadow-sm border border-slate-200 flex flex-col">
+                    <div class="px-4 py-2 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col">
                         <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">Status Model</span>
                         <div class="flex items-center gap-1.5 mt-1">
                             <span class="w-2 h-2 rounded-full" :class="metrics.accuracy >= 70 ? 'bg-[#00A651] animate-pulse' : 'bg-rose-500 animate-pulse'"></span>
-                            <span class="text-sm font-bold text-slate-700 leading-none">Online & Aktif</span>
+                            <span class="text-sm font-bold text-slate-700 dark:text-slate-200 leading-none">Online & Aktif</span>
                         </div>
                     </div>
                 </div>
@@ -93,12 +93,12 @@ const getMetricBgColor = (val) => {
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     
                     <!-- Accuracy -->
-                    <div class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden relative">
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden relative">
                         <div class="absolute -right-10 -top-10 w-40 h-40 bg-[#00A651]/5 rounded-full blur-2xl group-hover:bg-[#00A651]/10 transition-colors"></div>
                         <div class="relative z-10">
                             <div class="flex justify-between items-start">
                                 <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Akurasi Prediksi</p>
-                                <div class="p-2 rounded-lg bg-slate-50 border border-slate-100 text-slate-400 group-hover:text-[#00A651] transition-colors">
+                                <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 text-slate-400 group-hover:text-[#00A651] transition-colors">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@ const getMetricBgColor = (val) => {
                                 </span>
                             </div>
                         </div>
-                        <div class="relative z-10 mt-6 w-full bg-slate-100 rounded-full h-2 overflow-hidden shadow-inner">
+                        <div class="relative z-10 mt-6 w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2 overflow-hidden shadow-inner flex shrink-0 border border-slate-200/50 dark:border-slate-600">
                             <div class="h-full rounded-full transition-all duration-1000 ease-out relative" :class="getMetricBgColor(metrics.accuracy)" :style="'width: ' + metrics.accuracy + '%'">
                                 <div class="absolute inset-0 bg-white/20"></div>
                             </div>
@@ -116,12 +116,12 @@ const getMetricBgColor = (val) => {
                     </div>
 
                     <!-- Precision -->
-                    <div class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden relative">
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden relative">
                         <div class="absolute -right-10 -top-10 w-40 h-40 bg-[#00AEEF]/5 rounded-full blur-2xl group-hover:bg-[#00AEEF]/10 transition-colors"></div>
                         <div class="relative z-10">
                             <div class="flex justify-between items-start">
                                 <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Presisi Positif</p>
-                                <div class="p-2 rounded-lg bg-slate-50 border border-slate-100 text-slate-400 group-hover:text-[#00AEEF] transition-colors">
+                                <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 text-slate-400 group-hover:text-[#00AEEF] transition-colors">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.671zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" /></svg>
                                 </div>
                             </div>
@@ -131,7 +131,7 @@ const getMetricBgColor = (val) => {
                                 </span>
                             </div>
                         </div>
-                        <div class="relative z-10 mt-6 w-full bg-slate-100 rounded-full h-2 overflow-hidden shadow-inner">
+                        <div class="relative z-10 mt-6 w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2 overflow-hidden shadow-inner flex shrink-0 border border-slate-200/50 dark:border-slate-600">
                             <div class="h-full rounded-full transition-all duration-1000 ease-out relative" :class="getMetricBgColor(metrics.precision)" :style="'width: ' + metrics.precision + '%'">
                                 <div class="absolute inset-0 bg-white/20"></div>
                             </div>
@@ -139,12 +139,12 @@ const getMetricBgColor = (val) => {
                     </div>
 
                     <!-- Recall -->
-                    <div class="bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden relative">
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden relative">
                         <div class="absolute -right-10 -top-10 w-40 h-40 bg-amber-500/5 rounded-full blur-2xl group-hover:bg-amber-500/10 transition-colors"></div>
                         <div class="relative z-10">
                             <div class="flex justify-between items-start">
                                 <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Sensitivitas (Recall)</p>
-                                <div class="p-2 rounded-lg bg-slate-50 border border-slate-100 text-slate-400 group-hover:text-amber-500 transition-colors">
+                                <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600 text-slate-400 group-hover:text-amber-500 transition-colors">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                 </div>
                             </div>
@@ -154,7 +154,7 @@ const getMetricBgColor = (val) => {
                                 </span>
                             </div>
                         </div>
-                        <div class="relative z-10 mt-6 w-full bg-slate-100 rounded-full h-2 overflow-hidden shadow-inner">
+                        <div class="relative z-10 mt-6 w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2 overflow-hidden shadow-inner flex shrink-0 border border-slate-200/50 dark:border-slate-600">
                             <div class="h-full rounded-full transition-all duration-1000 ease-out relative" :class="getMetricBgColor(metrics.recall)" :style="'width: ' + metrics.recall + '%'">
                                 <div class="absolute inset-0 bg-white/20"></div>
                             </div>
@@ -190,10 +190,10 @@ const getMetricBgColor = (val) => {
                 </div>
 
                 <!-- Confusion Matrix Enterprise Visualization -->
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm lg:col-span-2 relative">
-                    <div class="border-b border-slate-100 bg-slate-50/50 px-6 py-4 flex items-center justify-between">
+                <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm lg:col-span-2 relative">
+                    <div class="border-b border-slate-100 dark:border-slate-700/60 bg-slate-50/50 dark:bg-slate-800 px-6 py-4 flex items-center justify-between">
                         <div>
-                            <h3 class="text-lg font-extrabold text-slate-800">Confusion Matrix Array</h3>
+                            <h3 class="text-lg font-extrabold text-slate-800 dark:text-slate-100">Confusion Matrix Array</h3>
                             <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mt-1">Cross-Validation Result on {{ data_counts.testing }} Testing Samples</p>
                         </div>
                     </div>
@@ -222,52 +222,52 @@ const getMetricBgColor = (val) => {
                                 </div>
 
                                 <!-- Box Grid System -->
-                                <div class="relative bg-slate-200 gap-[1px] grid grid-cols-[auto_160px_160px] rounded-2xl overflow-hidden shadow-inner border border-slate-200 p-[1px]">
+                                <div class="relative bg-slate-200 dark:bg-slate-700 gap-[1px] grid grid-cols-[auto_160px_160px] rounded-2xl overflow-hidden shadow-inner border border-slate-200 dark:border-slate-700 p-[1px]">
                                     
                                     <!-- ROW 1 (Actual Positive) -->
-                                    <div class="bg-slate-50 w-12 flex flex-col items-center justify-center p-2 text-center rounded-l-xl">
+                                    <div class="bg-slate-50 dark:bg-slate-800 w-12 flex flex-col items-center justify-center p-2 text-center rounded-l-xl">
                                         <span class="text-[10px] font-bold text-rose-500 -rotate-90 whitespace-nowrap">Beresiko (1)</span>
                                     </div>
                                     
                                     <!-- True Positive (TP) -->
-                                    <div class="h-40 bg-white relative group overflow-hidden transition-all hover:bg-emerald-50/30 flex flex-col items-center justify-center">
+                                    <div class="h-40 bg-white dark:bg-slate-900 relative group overflow-hidden transition-all hover:bg-emerald-50/30 flex flex-col items-center justify-center">
                                         <!-- Heat background based on value -->
                                         <div class="absolute bottom-0 left-0 right-0 bg-[#00A651]/10 z-0 transition-all duration-1000" :style="{ height: Math.min((confusion_matrix.tp / (data_counts.testing || 1)) * 200, 100) + '%' }"></div>
                                         <div class="relative z-10 flex flex-col items-center">
-                                            <span class="text-4xl font-extrabold text-slate-800 drop-shadow-sm">{{ confusion_matrix.tp }}</span>
+                                            <span class="text-4xl font-extrabold text-slate-800 dark:text-slate-100 drop-shadow-sm">{{ confusion_matrix.tp }}</span>
                                             <span class="text-[10px] uppercase tracking-wider font-bold text-[#00A651] mt-2 bg-[#00A651]/10 px-2 py-1 rounded">True Positive</span>
                                         </div>
                                     </div>
 
                                     <!-- False Negative (FN) - Danger -->
-                                    <div class="h-40 bg-white relative group overflow-hidden transition-all hover:bg-rose-50/30 flex flex-col items-center justify-center rounded-tr-xl">
+                                    <div class="h-40 bg-white dark:bg-slate-900 relative group overflow-hidden transition-all hover:bg-rose-50/30 flex flex-col items-center justify-center rounded-tr-xl">
                                         <div class="absolute bottom-0 left-0 right-0 bg-rose-500/10 z-0 transition-all duration-1000" :style="{ height: Math.min((confusion_matrix.fn / (data_counts.testing || 1)) * 200, 100) + '%' }"></div>
                                         <div class="relative z-10 flex flex-col items-center">
-                                            <span class="text-4xl font-extrabold text-slate-800 drop-shadow-sm">{{ confusion_matrix.fn }}</span>
+                                            <span class="text-4xl font-extrabold text-slate-800 dark:text-slate-100 drop-shadow-sm">{{ confusion_matrix.fn }}</span>
                                             <span class="text-[10px] uppercase tracking-wider font-bold text-rose-500 mt-2 bg-rose-50 px-2 py-1 rounded">False Negative</span>
                                         </div>
                                     </div>
 
                                     <!-- ROW 2 (Actual Negative) -->
-                                    <div class="bg-slate-50 w-12 flex flex-col items-center justify-center p-2 text-center rounded-bl-xl border-t border-slate-200">
+                                    <div class="bg-slate-50 dark:bg-slate-800 w-12 flex flex-col items-center justify-center p-2 text-center rounded-bl-xl border-t border-slate-200 dark:border-slate-700">
                                         <span class="text-[10px] font-bold text-[#00A651] -rotate-90 whitespace-nowrap">Aman (0)</span>
                                     </div>
                                     
                                     <!-- False Positive (FP) - Warning -->
-                                    <div class="h-40 bg-white relative group overflow-hidden transition-all hover:bg-amber-50/30 flex flex-col items-center justify-center">
+                                    <div class="h-40 bg-white dark:bg-slate-900 relative group overflow-hidden transition-all hover:bg-amber-50/30 flex flex-col items-center justify-center">
                                         <div class="absolute bottom-0 left-0 right-0 bg-amber-500/10 z-0 transition-all duration-1000" :style="{ height: Math.min((confusion_matrix.fp / (data_counts.testing || 1)) * 200, 100) + '%' }"></div>
                                         <div class="relative z-10 flex flex-col items-center">
-                                            <span class="text-4xl font-extrabold text-slate-800 drop-shadow-sm">{{ confusion_matrix.fp }}</span>
+                                            <span class="text-4xl font-extrabold text-slate-800 dark:text-slate-100 drop-shadow-sm">{{ confusion_matrix.fp }}</span>
                                             <span class="text-[10px] uppercase tracking-wider font-bold text-amber-500 mt-2 bg-amber-50 px-2 py-1 rounded">False Positive</span>
                                         </div>
                                     </div>
 
                                     <!-- True Negative (TN) -->
-                                    <div class="h-40 bg-white relative group overflow-hidden transition-all hover:bg-[#00AEEF]/5 flex flex-col items-center justify-center rounded-br-xl">
+                                    <div class="h-40 bg-white dark:bg-slate-900 relative group overflow-hidden transition-all hover:bg-[#00AEEF]/5 flex flex-col items-center justify-center rounded-br-xl">
                                         <!-- Heat background based on value -->
                                         <div class="absolute bottom-0 left-0 right-0 bg-[#00AEEF]/10 z-0 transition-all duration-1000" :style="{ height: Math.min((confusion_matrix.tn / (data_counts.testing || 1)) * 200, 100) + '%' }"></div>
                                         <div class="relative z-10 flex flex-col items-center">
-                                            <span class="text-4xl font-extrabold text-slate-800 drop-shadow-sm">{{ confusion_matrix.tn }}</span>
+                                            <span class="text-4xl font-extrabold text-slate-800 dark:text-slate-100 drop-shadow-sm">{{ confusion_matrix.tn }}</span>
                                             <span class="text-[10px] uppercase tracking-wider font-bold text-[#00AEEF] mt-2 bg-blue-50 px-2 py-1 rounded">True Negative</span>
                                         </div>
                                     </div>
@@ -277,9 +277,9 @@ const getMetricBgColor = (val) => {
                         </div>
 
                         <!-- Professional Legend Card -->
-                        <div class="w-full max-w-sm bg-white border border-slate-200 rounded-2xl shadow-lg shadow-slate-200/50 p-6 relative overflow-hidden">
+                        <div class="w-full max-w-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-slate-900/50 p-6 relative overflow-hidden">
                             <!-- Inner decoration -->
-                            <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-slate-100 to-transparent rounded-bl-full pointer-events-none"></div>
+                            <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-slate-100 dark:from-slate-700 to-transparent rounded-bl-full pointer-events-none"></div>
                             
                             <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2">
                                 <svg class="h-4 w-4 text-[#00AEEF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -288,40 +288,40 @@ const getMetricBgColor = (val) => {
                             
                             <div class="space-y-4 relative z-10">
                                 <div class="flex gap-4 items-start group">
-                                    <div class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
+                                    <div class="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-100 dark:border-emerald-800/50 flex items-center justify-center shrink-0 mt-0.5">
                                         <span class="text-[#00A651] font-bold text-[10px]">TP</span>
                                     </div>
                                     <div>
-                                        <h5 class="text-sm font-bold text-slate-800">Sempurna (Akurat)</h5>
-                                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Sistem mendeteksi pasien BERESIKO, dan kenyataannya memang benar.</p>
+                                        <h5 class="text-sm font-bold text-slate-800 dark:text-slate-200">Sempurna (Akurat)</h5>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Sistem mendeteksi pasien BERESIKO, dan kenyataannya memang benar.</p>
                                     </div>
                                 </div>
                                 <div class="flex gap-4 items-start group">
-                                    <div class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 mt-0.5">
+                                    <div class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800/50 flex items-center justify-center shrink-0 mt-0.5">
                                         <span class="text-[#00AEEF] font-bold text-[10px]">TN</span>
                                     </div>
                                     <div>
-                                        <h5 class="text-sm font-bold text-slate-800">Akurat (Aman)</h5>
-                                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Sistem mendeteksi pasien AMAN, dan kenyataannya memang benar (Sehat).</p>
+                                        <h5 class="text-sm font-bold text-slate-800 dark:text-slate-200">Akurat (Aman)</h5>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Sistem mendeteksi pasien AMAN, dan kenyataannya memang benar (Sehat).</p>
                                     </div>
                                 </div>
-                                <div class="h-px w-full bg-slate-100 my-2"></div>
+                                <div class="h-px w-full bg-slate-100 dark:bg-slate-700 my-2"></div>
                                 <div class="flex gap-4 items-start group">
-                                    <div class="w-8 h-8 rounded-lg bg-rose-50 border border-rose-100 flex items-center justify-center shrink-0 mt-0.5">
+                                    <div class="w-8 h-8 rounded-lg bg-rose-50 dark:bg-rose-900/30 border border-rose-100 dark:border-rose-800/50 flex items-center justify-center shrink-0 mt-0.5">
                                         <span class="text-rose-500 font-bold text-[10px] animate-pulse">FN</span>
                                     </div>
                                     <div>
-                                        <h5 class="text-sm font-bold text-rose-600">Error Fatal (Missed)</h5>
-                                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Prediksi AMAN, padahal aslinya SAKIT. (Nilai ini harus ditekan seminimal mungkin pada instansi medis!).</p>
+                                        <h5 class="text-sm font-bold text-rose-600 dark:text-rose-400">Error Fatal (Missed)</h5>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Prediksi AMAN, padahal aslinya SAKIT. (Nilai ini harus ditekan seminimal mungkin pada instansi medis!).</p>
                                     </div>
                                 </div>
                                 <div class="flex gap-4 items-start group">
-                                    <div class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center shrink-0 mt-0.5">
+                                    <div class="w-8 h-8 rounded-lg bg-amber-50 dark:bg-amber-900/30 border border-amber-100 dark:border-amber-800/50 flex items-center justify-center shrink-0 mt-0.5">
                                         <span class="text-amber-500 font-bold text-[10px]">FP</span>
                                     </div>
                                     <div>
-                                        <h5 class="text-sm font-bold text-amber-600">Alarm Palsu</h5>
-                                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Prediksi SAKIT, padahal aslinya AMAN.</p>
+                                        <h5 class="text-sm font-bold text-amber-600 dark:text-amber-400">Alarm Palsu</h5>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">Prediksi SAKIT, padahal aslinya AMAN.</p>
                                     </div>
                                 </div>
                             </div>

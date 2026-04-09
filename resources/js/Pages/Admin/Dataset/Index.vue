@@ -66,7 +66,7 @@ const autoSplit = () => {
         <template #header>
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between py-2">
                 <div>
-                    <h2 class="text-2xl font-extrabold text-slate-800 tracking-tight">Pusat Data Medis</h2>
+                    <h2 class="text-2xl font-extrabold text-slate-800 dark:text-white tracking-tight">Pusat Data Medis</h2>
                     <p class="text-sm font-medium text-slate-500 mt-0.5">Kelola Dataset CSV Klasifikasi Penyakit Jantung</p>
                 </div>
                 
@@ -76,7 +76,7 @@ const autoSplit = () => {
                         <svg class="h-4 w-4 group-hover:scale-110 transition-transform" :class="{ 'animate-spin': isSplitting }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
                         {{ isSplitting ? 'Memproses...' : 'Bagi Data Otomatis (80:20)' }}
                     </button>
-                    <button @click="router.delete(route('dataset.truncate'), { preserveScroll: true })" class="group flex items-center gap-2 px-4 py-2 bg-white hover:bg-rose-50 border border-slate-200 hover:border-rose-200 rounded-xl text-rose-600 font-bold text-sm transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500/50">
+                    <button @click="router.delete(route('dataset.truncate'), { preserveScroll: true })" class="group flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 hover:bg-rose-50 dark:hover:bg-rose-900/30 border border-slate-200 dark:border-slate-700 hover:border-rose-200 dark:hover:border-rose-800 rounded-xl text-rose-600 dark:text-rose-500 font-bold text-sm transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500/50">
                         <svg class="h-4 w-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                         Kosongkan Data
                     </button>
@@ -120,7 +120,7 @@ const autoSplit = () => {
                 </div>
 
                 <!-- Beautiful Drag & Drop Upload Zone -->
-                <div class="bg-white rounded-2xl border border-slate-200 p-6 lg:col-span-2 shadow-sm relative overflow-hidden group">
+                <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 lg:col-span-2 shadow-sm relative overflow-hidden group">
                     <div class="flex items-center gap-2 mb-4">
                         <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
                         <h3 class="font-bold text-slate-800">Impor Dataset Baru</h3>
@@ -133,26 +133,26 @@ const autoSplit = () => {
                         @dragleave.prevent="isDragging = false" 
                         @drop.prevent="handleFileUpload" 
                         @click="triggerFileInput"
-                        class="w-full h-40 rounded-xl border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center cursor-pointer group hover:bg-slate-50 relative overflow-hidden"
+                        class="w-full h-40 rounded-xl border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center cursor-pointer group hover:bg-slate-50 dark:hover:bg-slate-700/50 relative overflow-hidden"
                         :class="[
-                            isDragging ? 'border-[#00AEEF] bg-blue-50/50' : 'border-slate-300 bg-slate-50/30',
+                            isDragging ? 'border-[#00AEEF] bg-blue-50/50 dark:bg-blue-900/30' : 'border-slate-300 dark:border-slate-600 bg-slate-50/30 dark:bg-slate-800',
                             isUploading ? 'pointer-events-none opacity-80' : ''
                         ]"
                     >
                         <!-- Animated Upload Progress Overlay -->
-                        <div v-if="isUploading" class="absolute inset-0 bg-white/60 backdrop-blur-sm z-10 flex flex-col items-center justify-center">
+                        <div v-if="isUploading" class="absolute inset-0 bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm z-10 flex flex-col items-center justify-center">
                             <svg class="animate-spin h-8 w-8 text-[#00AEEF] mb-2" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                             </svg>
-                            <span class="text-sm font-bold text-slate-700">Menganalisa dan Menyimpan CSV...</span>
+                            <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Menganalisa dan Menyimpan CSV...</span>
                         </div>
 
                         <div v-else class="text-center transform transition-transform group-hover:-translate-y-1">
-                            <div class="mx-auto flex justify-center w-12 h-12 mb-3 rounded-full bg-white shadow-sm border border-slate-100 items-center text-[#00AEEF]">
+                            <div class="mx-auto flex justify-center w-12 h-12 mb-3 rounded-full bg-white dark:bg-slate-700 shadow-sm border border-slate-100 dark:border-slate-600 items-center text-[#00AEEF]">
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>
                             </div>
-                            <p class="text-sm font-bold text-slate-700">Klik atau letakkan file CSV di sini</p>
+                            <p class="text-sm font-bold text-slate-700 dark:text-slate-300">Klik atau letakkan file CSV di sini</p>
                             <p class="text-xs font-semibold text-slate-400 mt-1">Ukuran Maksimal Sesuai Konfigurasi PHP</p>
                         </div>
                     </div>
@@ -171,45 +171,45 @@ const autoSplit = () => {
             </div>
 
             <!-- Premium SaaS Table Area -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-6 py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-                    <h3 class="text-base font-extrabold text-slate-800">Tinjauan Baris Dataset</h3>
-                    <div class="px-3 py-1 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold">{{ stats.total }} Item</div>
+            <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+                <div class="px-6 py-5 border-b border-slate-100 dark:border-slate-700/60 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800">
+                    <h3 class="text-base font-extrabold text-slate-800 dark:text-slate-100">Tinjauan Baris Dataset</h3>
+                    <div class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-lg text-xs font-bold">{{ stats.total }} Item</div>
                 </div>
 
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse text-sm">
-                        <thead class="bg-slate-50/50 border-b border-slate-200">
+                        <thead class="bg-slate-50/50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700">
                             <tr>
-                                <th class="py-4 px-6 font-bold text-slate-500 uppercase tracking-widest text-[10px] whitespace-nowrap">ID</th>
-                                <th class="py-4 px-6 font-bold text-slate-500 uppercase tracking-widest text-[10px] whitespace-nowrap">Profil Pasien</th>
-                                <th class="py-4 px-6 font-bold text-slate-500 uppercase tracking-widest text-[10px] whitespace-nowrap">Indikator Medis (G/TD/K)</th>
-                                <th class="py-4 px-6 font-bold text-slate-500 uppercase tracking-widest text-[10px] whitespace-nowrap text-center">Kelas Aktual</th>
-                                <th class="py-4 px-6 font-bold text-slate-500 uppercase tracking-widest text-[10px] whitespace-nowrap text-center">Tipe Data Set</th>
-                                <th class="py-4 px-6 font-bold text-slate-500 uppercase tracking-widest text-[10px] whitespace-nowrap text-right">Opsi</th>
+                                <th class="py-4 px-6 font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest text-[10px] whitespace-nowrap">ID</th>
+                                <th class="py-4 px-6 font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest text-[10px] whitespace-nowrap">Profil Pasien</th>
+                                <th class="py-4 px-6 font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest text-[10px] whitespace-nowrap">Indikator Medis (G/TD/K)</th>
+                                <th class="py-4 px-6 font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest text-[10px] whitespace-nowrap text-center">Kelas Aktual</th>
+                                <th class="py-4 px-6 font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest text-[10px] whitespace-nowrap text-center">Tipe Data Set</th>
+                                <th class="py-4 px-6 font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest text-[10px] whitespace-nowrap text-right">Opsi</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-100">
-                            <tr v-for="d in datasets.data" :key="d.id" class="hover:bg-slate-50/60 transition-colors group">
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-700/50">
+                            <tr v-for="d in datasets.data" :key="d.id" class="hover:bg-slate-50/60 dark:hover:bg-slate-700/30 transition-colors group">
                                 <td class="py-4 px-6 font-bold text-slate-400">#{{ d.id }}</td>
                                 <td class="py-4 px-6">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs shrink-0" :class="d.gender === 'L' ? 'bg-blue-50 text-blue-600 border border-blue-100' : 'bg-pink-50 text-pink-600 border border-pink-100'">
+                                        <div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs shrink-0" :class="d.gender === 'L' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800' : 'bg-pink-50 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 border border-pink-100 dark:border-pink-800'">
                                             {{ d.gender === 'L' ? 'L' : 'P' }}
                                         </div>
                                         <div class="flex flex-col">
-                                            <span class="font-bold text-slate-700">{{ d.age }} Tahun</span>
+                                            <span class="font-bold text-slate-700 dark:text-slate-200">{{ d.age }} Tahun</span>
                                             <span class="text-[10px] uppercase font-bold text-slate-400">{{ d.gender === 'L' ? 'Laki-laki' : 'Perempuan' }}</span>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="py-4 px-6">
                                     <div class="flex items-center gap-2 font-mono text-xs">
-                                        <span class="px-2 py-1 bg-slate-100 rounded border border-slate-200 text-slate-600 font-bold" title="Gula Darah">{{ d.blood_sugar }}</span>
-                                        <span class="text-slate-300">/</span>
-                                        <span class="px-2 py-1 bg-slate-100 rounded border border-slate-200 text-slate-600 font-bold" title="Tekanan Darah">{{ d.blood_pressure }}</span>
-                                        <span class="text-slate-300">/</span>
-                                        <span class="px-2 py-1 bg-slate-100 rounded border border-slate-200 text-slate-600 font-bold" title="Kolesterol">{{ d.cholesterol }}</span>
+                                        <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-bold" title="Gula Darah">{{ d.blood_sugar }}</span>
+                                        <span class="text-slate-300 dark:text-slate-600">/</span>
+                                        <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-bold" title="Tekanan Darah">{{ d.blood_pressure }}</span>
+                                        <span class="text-slate-300 dark:text-slate-600">/</span>
+                                        <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-bold" title="Kolesterol">{{ d.cholesterol }}</span>
                                     </div>
                                 </td>
                                 <td class="py-4 px-6 text-center">
@@ -218,12 +218,12 @@ const autoSplit = () => {
                                     </span>
                                 </td>
                                 <td class="py-4 px-6 text-center">
-                                    <button @click="toggleTrainingStatus(d.id, d.is_training)" class="inline-flex px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border hover:scale-105 transition-transform shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-slate-200" :class="d.is_training ? 'bg-indigo-50 text-indigo-600 border-indigo-100 hover:bg-indigo-100' : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50'">
+                                    <button @click="toggleTrainingStatus(d.id, d.is_training)" class="inline-flex px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border hover:scale-105 transition-transform shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-slate-200" :class="d.is_training ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 border-indigo-100 dark:border-indigo-800 hover:bg-indigo-100 dark:hover:bg-indigo-900/50' : 'bg-white dark:bg-slate-700 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600'">
                                         {{ d.is_training ? 'Latih (Train)' : 'Uji (Test)' }}
                                     </button>
                                 </td>
                                 <td class="py-4 px-6 text-right">
-                                    <button @click="router.delete(route('dataset.destroy', d.id), { preserveScroll: true })" class="inline-flex items-center justify-center p-2 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors focus:outline-none">
+                                    <button @click="router.delete(route('dataset.destroy', d.id), { preserveScroll: true })" class="inline-flex items-center justify-center p-2 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/30 transition-colors focus:outline-none">
                                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                                     </button>
                                 </td>
@@ -242,12 +242,12 @@ const autoSplit = () => {
                 </div>
 
                 <!-- Premium Pagination -->
-                <div v-if="datasets.links && datasets.links.length > 3" class="px-6 py-4 bg-slate-50/50 border-t border-slate-100 flex items-center justify-between">
+                <div v-if="datasets.links && datasets.links.length > 3" class="px-6 py-4 bg-slate-50/50 dark:bg-slate-800/80 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
                     <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Menampilkan Hal. {{ datasets.current_page }} dari {{ datasets.last_page }}</span>
                     <nav class="flex gap-1">
                         <template v-for="(link, k) in datasets.links" :key="k">
-                            <span v-if="link.url === null" class="px-3 py-1.5 rounded-lg text-sm text-slate-300 font-bold bg-white border border-slate-200 cursor-not-allowed" v-html="link.label"></span>
-                            <Link v-else :href="link.url" class="px-3 py-1.5 rounded-lg text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-[#00AEEF] focus:ring-offset-1 focus:ring-offset-slate-50" :class="link.active ? 'bg-[#00AEEF] text-white border-transparent shadow-[0_2px_10px_-3px_rgba(0,174,239,0.5)]' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 hover:text-slate-900'" v-html="link.label"></Link>
+                            <span v-if="link.url === null" class="px-3 py-1.5 rounded-lg text-sm text-slate-300 dark:text-slate-600 font-bold bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 cursor-not-allowed" v-html="link.label"></span>
+                            <Link v-else :href="link.url" class="px-3 py-1.5 rounded-lg text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-[#00AEEF] focus:ring-offset-1 focus:ring-offset-slate-50" :class="link.active ? 'bg-[#00AEEF] text-white border-transparent shadow-[0_2px_10px_-3px_rgba(0,174,239,0.5)]' : 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-600 hover:text-slate-900 dark:hover:text-white'" v-html="link.label"></Link>
                         </template>
                     </nav>
                 </div>

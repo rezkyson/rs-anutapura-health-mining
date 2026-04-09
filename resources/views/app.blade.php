@@ -14,8 +14,17 @@
         @routes
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
+        
+        <!-- Prevent Flash of Unstyled Content (FOUC) for Dark Mode -->
+        <script>
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased text-slate-900 bg-slate-50 dark:bg-[#061121] dark:text-slate-100 transition-colors duration-500 ease-in-out">
         @inertia
     </body>
 </html>
