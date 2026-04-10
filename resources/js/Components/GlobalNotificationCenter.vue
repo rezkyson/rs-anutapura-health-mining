@@ -31,39 +31,47 @@ const normalizeStatusMessage = (status) => {
 const palette = {
     success: {
         badge: 'Sukses',
-        card: 'border-emerald-200/80 bg-white/90 dark:border-emerald-500/20 dark:bg-slate-900/90',
-        glow: 'from-emerald-500/20 via-emerald-400/10 to-transparent',
-        iconWrap: 'bg-emerald-500/10 text-emerald-600 ring-1 ring-emerald-500/15 dark:bg-emerald-500/15 dark:text-emerald-300',
-        title: 'text-emerald-700 dark:text-emerald-300',
+        shell: 'border-emerald-200/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(240,253,244,0.92))] dark:border-emerald-500/20 dark:bg-[linear-gradient(135deg,rgba(8,20,38,0.98),rgba(6,78,59,0.14))]',
+        rail: 'from-emerald-400 via-[#00A651] to-emerald-600',
+        iconWrap: 'bg-emerald-500/10 text-emerald-600 ring-1 ring-emerald-500/15 dark:bg-emerald-500/12 dark:text-emerald-300',
+        badgeWrap: 'bg-emerald-500/10 text-emerald-700 ring-1 ring-emerald-500/15 dark:bg-emerald-500/12 dark:text-emerald-300',
+        title: 'text-emerald-800 dark:text-emerald-200',
         message: 'text-slate-600 dark:text-slate-300',
-        progress: 'from-emerald-500 to-[#00A651]',
+        accent: 'text-emerald-500/70 dark:text-emerald-300/70',
+        progress: 'from-emerald-400 via-[#00A651] to-emerald-600',
     },
     info: {
         badge: 'Info',
-        card: 'border-sky-200/80 bg-white/90 dark:border-sky-500/20 dark:bg-slate-900/90',
-        glow: 'from-sky-500/20 via-sky-400/10 to-transparent',
-        iconWrap: 'bg-sky-500/10 text-sky-600 ring-1 ring-sky-500/15 dark:bg-sky-500/15 dark:text-sky-300',
-        title: 'text-sky-700 dark:text-sky-300',
+        shell: 'border-sky-200/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(239,246,255,0.94))] dark:border-sky-500/20 dark:bg-[linear-gradient(135deg,rgba(8,20,38,0.98),rgba(2,132,199,0.14))]',
+        rail: 'from-sky-400 via-[#00AEEF] to-cyan-500',
+        iconWrap: 'bg-sky-500/10 text-sky-600 ring-1 ring-sky-500/15 dark:bg-sky-500/12 dark:text-sky-300',
+        badgeWrap: 'bg-sky-500/10 text-sky-700 ring-1 ring-sky-500/15 dark:bg-sky-500/12 dark:text-sky-300',
+        title: 'text-sky-800 dark:text-sky-200',
         message: 'text-slate-600 dark:text-slate-300',
-        progress: 'from-[#00AEEF] to-sky-500',
+        accent: 'text-sky-500/70 dark:text-sky-300/70',
+        progress: 'from-sky-400 via-[#00AEEF] to-cyan-500',
     },
     warning: {
         badge: 'Peringatan',
-        card: 'border-amber-200/80 bg-white/90 dark:border-amber-500/20 dark:bg-slate-900/90',
-        glow: 'from-amber-500/20 via-amber-400/10 to-transparent',
-        iconWrap: 'bg-amber-500/10 text-amber-600 ring-1 ring-amber-500/15 dark:bg-amber-500/15 dark:text-amber-300',
-        title: 'text-amber-700 dark:text-amber-300',
+        shell: 'border-amber-200/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(255,251,235,0.94))] dark:border-amber-500/20 dark:bg-[linear-gradient(135deg,rgba(8,20,38,0.98),rgba(217,119,6,0.14))]',
+        rail: 'from-amber-400 via-orange-500 to-amber-600',
+        iconWrap: 'bg-amber-500/10 text-amber-600 ring-1 ring-amber-500/15 dark:bg-amber-500/12 dark:text-amber-300',
+        badgeWrap: 'bg-amber-500/10 text-amber-700 ring-1 ring-amber-500/15 dark:bg-amber-500/12 dark:text-amber-300',
+        title: 'text-amber-800 dark:text-amber-200',
         message: 'text-slate-600 dark:text-slate-300',
-        progress: 'from-amber-500 to-orange-500',
+        accent: 'text-amber-500/70 dark:text-amber-300/70',
+        progress: 'from-amber-400 via-orange-500 to-amber-600',
     },
     error: {
         badge: 'Gagal',
-        card: 'border-rose-200/80 bg-white/90 dark:border-rose-500/20 dark:bg-slate-900/90',
-        glow: 'from-rose-500/20 via-rose-400/10 to-transparent',
-        iconWrap: 'bg-rose-500/10 text-rose-600 ring-1 ring-rose-500/15 dark:bg-rose-500/15 dark:text-rose-300',
-        title: 'text-rose-700 dark:text-rose-300',
+        shell: 'border-rose-200/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.98),rgba(255,241,242,0.94))] dark:border-rose-500/20 dark:bg-[linear-gradient(135deg,rgba(8,20,38,0.98),rgba(225,29,72,0.14))]',
+        rail: 'from-rose-400 via-rose-500 to-pink-600',
+        iconWrap: 'bg-rose-500/10 text-rose-600 ring-1 ring-rose-500/15 dark:bg-rose-500/12 dark:text-rose-300',
+        badgeWrap: 'bg-rose-500/10 text-rose-700 ring-1 ring-rose-500/15 dark:bg-rose-500/12 dark:text-rose-300',
+        title: 'text-rose-800 dark:text-rose-200',
         message: 'text-slate-600 dark:text-slate-300',
-        progress: 'from-rose-500 to-pink-500',
+        accent: 'text-rose-500/70 dark:text-rose-300/70',
+        progress: 'from-rose-400 via-rose-500 to-pink-600',
     },
 };
 
@@ -139,54 +147,66 @@ const pushFlashEntries = (value = {}) => {
     entries.forEach((entry) => notify(entry));
 };
 
+let removeFlashListener = null;
 let removeSuccessListener = null;
 
 onMounted(() => {
     pushFlashEntries(flash.value);
 
-    removeSuccessListener = router.on('success', (page) => {
-        pushFlashEntries(page?.props?.flash ?? page?.flash ?? {});
+    removeSuccessListener = router.on('success', (event) => {
+        pushFlashEntries(event.detail.page?.props?.flash ?? {});
+    });
+
+    removeFlashListener = router.on('flash', (event) => {
+        pushFlashEntries(event.detail.flash ?? {});
     });
 });
 
 onUnmounted(() => {
     removeSuccessListener?.();
+    removeFlashListener?.();
 });
 </script>
 
 <template>
     <Teleport to="body">
         <div class="pointer-events-none fixed inset-x-0 z-[70] flex justify-end px-4 sm:px-6 lg:px-8" :style="{ top: topOffset }" aria-live="polite">
-            <TransitionGroup name="toast-stack" tag="div" class="flex w-full max-w-md flex-col gap-3">
+            <TransitionGroup name="toast-stack" tag="div" class="flex w-full max-w-[21rem] flex-col gap-2.5">
                 <section
                     v-for="notification in notifications"
                     :key="notification.id"
-                    class="pointer-events-auto relative overflow-hidden rounded-[1.35rem] border shadow-[0_18px_48px_-28px_rgba(15,23,42,0.32)]"
-                    :class="palette[notification.type]?.card"
+                    class="pointer-events-auto relative overflow-hidden rounded-[1.1rem] border shadow-[0_10px_24px_-18px_rgba(15,23,42,0.16)]"
+                    :class="palette[notification.type]?.shell"
                 >
-                    <div class="absolute inset-x-0 top-0 h-20 bg-gradient-to-br opacity-80" :class="palette[notification.type]?.glow" />
+                    <div class="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-b" :class="palette[notification.type]?.rail" />
+                    <div class="absolute inset-y-0 right-0 w-24 opacity-40 dark:opacity-30">
+                        <div class="toast-grid h-full w-full" :class="palette[notification.type]?.accent" />
+                    </div>
 
-                    <div class="relative flex gap-4 p-4 sm:p-5">
-                        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl" :class="palette[notification.type]?.iconWrap">
-                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                    <div class="relative flex gap-3 p-3.5">
+                        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.9rem]" :class="palette[notification.type]?.iconWrap">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
                                 <path stroke-linecap="round" stroke-linejoin="round" :d="iconPath(notification.type)" />
                             </svg>
                         </div>
 
                         <div class="min-w-0 flex-1">
-                            <div class="flex items-start justify-between gap-3">
-                                <div>
-                                    <p class="text-[11px] font-black uppercase tracking-[0.24em] text-slate-400 dark:text-slate-500">
+                            <div class="flex items-start justify-between gap-2">
+                                <div class="min-w-0 flex-1">
+                                    <div class="inline-flex items-center rounded-full px-2 py-1 text-[9px] font-black uppercase tracking-[0.22em]" :class="palette[notification.type]?.badgeWrap">
                                         {{ palette[notification.type]?.badge }}
-                                    </p>
-                                    <p class="mt-1 text-sm font-extrabold" :class="palette[notification.type]?.title">
+                                    </div>
+                                    <p class="mt-2 text-[13px] font-extrabold tracking-tight" :class="palette[notification.type]?.title">
                                         {{ notification.title ?? 'Pembaruan sistem' }}
+                                    </p>
+                                    <p class="mt-1.5 text-[12px] leading-5" :class="palette[notification.type]?.message">
+                                        {{ notification.message }}
                                     </p>
                                 </div>
 
                                 <button
                                     type="button"
-                                    class="rounded-full p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                                    class="rounded-full p-1 text-slate-400 transition-colors hover:bg-white/70 hover:text-slate-700 dark:hover:bg-slate-800/70 dark:hover:text-slate-200"
                                     @click="dismiss(notification.id)"
                                 >
                                     <span class="sr-only">Tutup notifikasi</span>
@@ -195,14 +215,10 @@ onUnmounted(() => {
                                     </svg>
                                 </button>
                             </div>
-
-                            <p class="mt-2 text-sm leading-6" :class="palette[notification.type]?.message">
-                                {{ notification.message }}
-                            </p>
                         </div>
                     </div>
 
-                    <div class="absolute inset-x-0 bottom-0 h-1 bg-slate-200/70 dark:bg-slate-800/80">
+                    <div class="absolute inset-x-0 bottom-0 h-[3px] bg-slate-200/55 dark:bg-slate-800/70">
                         <div
                             class="h-full bg-gradient-to-r toast-progress"
                             :class="palette[notification.type]?.progress"
@@ -218,17 +234,17 @@ onUnmounted(() => {
 <style scoped>
 .toast-stack-enter-active,
 .toast-stack-leave-active {
-    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.12s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .toast-stack-enter-from,
 .toast-stack-leave-to {
     opacity: 0;
-    transform: translateY(-12px) scale(0.96);
+    transform: translateY(-8px) scale(0.98);
 }
 
 .toast-stack-move {
-    transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .toast-progress {
@@ -236,6 +252,14 @@ onUnmounted(() => {
     animation-name: shrinkWidth;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
+}
+
+.toast-grid {
+    background-image:
+        linear-gradient(currentColor 1px, transparent 1px),
+        linear-gradient(90deg, currentColor 1px, transparent 1px);
+    background-size: 14px 14px;
+    mask-image: linear-gradient(90deg, transparent, black 30%, black);
 }
 
 @keyframes shrinkWidth {

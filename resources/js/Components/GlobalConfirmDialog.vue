@@ -64,7 +64,7 @@ const handleApprove = () => {
 
     window.setTimeout(() => {
         approve();
-    }, 180);
+    }, 80);
 };
 
 onMounted(() => {
@@ -83,7 +83,7 @@ onUnmounted(() => {
             enter-active-class="transition duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
             enter-from-class="opacity-0"
             enter-to-class="opacity-100"
-            leave-active-class="transition duration-200 ease-in"
+            leave-active-class="transition duration-150 ease-in"
             leave-from-class="opacity-100"
             leave-to-class="opacity-0"
         >
@@ -96,7 +96,7 @@ onUnmounted(() => {
                         enter-active-class="transition duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
                         enter-from-class="opacity-0 translate-y-4 scale-[0.98]"
                         enter-to-class="opacity-100 translate-y-0 scale-100"
-                        leave-active-class="transition duration-200 ease-in"
+                        leave-active-class="transition duration-150 ease-in"
                         leave-from-class="opacity-100 translate-y-0 scale-100"
                         leave-to-class="opacity-0 translate-y-4 scale-[0.98]"
                     >

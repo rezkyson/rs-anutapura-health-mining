@@ -14,7 +14,7 @@ const fileInput = ref(null);
 const isDragging = ref(false);
 const isUploading = ref(false);
 const { confirm } = useConfirmDialog();
-const { notify } = useNotifications();
+const { notify, dismiss } = useNotifications();
 
 const handleFileUpload = (e) => {
     const file = e.target.files ? e.target.files[0] : e.dataTransfer.files[0];
@@ -83,6 +83,13 @@ const autoSplit = async () => {
     if (!approved) return;
 
     isSplitting.value = true;
+    const pendingToastId = notify({
+        type: 'info',
+        title: 'Membagi dataset',
+        message: 'Sistem sedang menyiapkan pembagian data latih dan data uji.',
+        persistent: true,
+    });
+
     router.post(route('dataset.autoSplit'), { ratio: 80 }, {
         preserveScroll: true,
         onError: (errors) => {
@@ -92,7 +99,10 @@ const autoSplit = async () => {
                 message: errors.split ?? 'Dataset belum bisa dibagi otomatis. Silakan coba lagi.',
             });
         },
-        onFinish: () => isSplitting.value = false,
+        onFinish: () => {
+            isSplitting.value = false;
+            dismiss(pendingToastId);
+        },
     });
 };
 
@@ -108,8 +118,23 @@ const confirmTruncate = async () => {
 
     if (!approved) return;
 
+    const pendingToastId = notify({
+        type: 'info',
+        title: 'Menghapus dataset',
+        message: 'Sistem sedang mengosongkan seluruh data dataset.',
+        persistent: true,
+    });
+
     router.delete(route('dataset.truncate'), {
         preserveScroll: true,
+        onError: () => {
+            notify({
+                type: 'error',
+                title: 'Penghapusan dataset gagal',
+                message: 'Dataset belum berhasil dikosongkan. Silakan coba lagi.',
+            });
+        },
+        onFinish: () => dismiss(pendingToastId),
     });
 };
 
@@ -125,8 +150,23 @@ const confirmDestroy = async (datasetId) => {
 
     if (!approved) return;
 
+    const pendingToastId = notify({
+        type: 'info',
+        title: 'Menghapus data pasien',
+        message: 'Baris dataset yang dipilih sedang diproses untuk dihapus.',
+        persistent: true,
+    });
+
     router.delete(route('dataset.destroy', datasetId), {
         preserveScroll: true,
+        onError: () => {
+            notify({
+                type: 'error',
+                title: 'Penghapusan data gagal',
+                message: 'Data pasien belum berhasil dihapus. Silakan coba lagi.',
+            });
+        },
+        onFinish: () => dismiss(pendingToastId),
     });
 };
 </script>
