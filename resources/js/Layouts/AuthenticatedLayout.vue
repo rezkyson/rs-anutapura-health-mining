@@ -2,12 +2,13 @@
 import { ref } from 'vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
-import { Link, usePage } from '@inertiajs/vue3';
+import GlobalConfirmDialog from '@/Components/GlobalConfirmDialog.vue';
+import GlobalNotificationCenter from '@/Components/GlobalNotificationCenter.vue';
+import { Link } from '@inertiajs/vue3';
 import DarkModeToggle from '@/Components/DarkModeToggle.vue';
 import { useDarkMode } from '@/Composables/useDarkMode';
 
 const showingNavigationDropdown = ref(false);
-const page = usePage();
 useDarkMode(); // Initialize dark mode on layout mount
 </script>
 
@@ -170,6 +171,8 @@ useDarkMode(); // Initialize dark mode on layout mount
                 &copy; {{ new Date().getFullYear() }} RS ANUTAPURA PALU • INTELLIGENT HEALTH MINING
             </p>
         </footer>
+        <GlobalNotificationCenter top-offset="6rem" />
+        <GlobalConfirmDialog />
     </div>
 </template>
 

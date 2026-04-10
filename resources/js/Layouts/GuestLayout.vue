@@ -1,4 +1,6 @@
 <script setup>
+import GlobalConfirmDialog from '@/Components/GlobalConfirmDialog.vue';
+import GlobalNotificationCenter from '@/Components/GlobalNotificationCenter.vue';
 import { Link } from '@inertiajs/vue3';
 </script>
 
@@ -93,6 +95,8 @@ import { Link } from '@inertiajs/vue3';
             </div>
         </div>
 
+        <GlobalNotificationCenter />
+        <GlobalConfirmDialog />
     </div>
 </template>
 

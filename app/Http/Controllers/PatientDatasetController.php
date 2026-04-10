@@ -105,7 +105,7 @@ class PatientDatasetController extends Controller
             }
             DB::commit();
             
-            return redirect()->back()->with('status', "Berhasil import {$importedCount} data. ({$nullSkippedCount} baris diabaikan karena kosong atau tidak lengkap)");
+            return redirect()->back()->with('success', "Berhasil import {$importedCount} data. ({$nullSkippedCount} baris diabaikan karena kosong atau tidak lengkap)");
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->withErrors(['file' => 'Terjadi kesalahan impor. Format kolom CSV harus: age, gender, blood_pressure, cholesterol, blood_sugar, risk_result']);
@@ -125,7 +125,7 @@ class PatientDatasetController extends Controller
             'is_training' => $request->is_training
         ]);
 
-        return redirect()->back()->with('status', 'Status data berhasil diubah.');
+        return redirect()->back()->with('success', 'Status data berhasil diubah.');
     }
     
     /**
@@ -134,7 +134,7 @@ class PatientDatasetController extends Controller
     public function destroy(PatientDataset $dataset)
     {
         $dataset->delete();
-        return redirect()->back()->with('status', 'Data berhasil dihapus.');
+        return redirect()->back()->with('success', 'Data berhasil dihapus.');
     }
 
     /**
@@ -143,7 +143,7 @@ class PatientDatasetController extends Controller
     public function truncate()
     {
         PatientDataset::truncate();
-        return redirect()->back()->with('status', 'Seluruh dataset berhasil dihapus.');
+        return redirect()->back()->with('success', 'Seluruh dataset berhasil dihapus.');
     }
 
     /**
@@ -174,6 +174,6 @@ class PatientDatasetController extends Controller
 
         $testingCount = count($testingIds);
 
-        return redirect()->back()->with('status', "Dataset berhasil dibagi: {$trainingCount} data latih ({$ratio}%) dan {$testingCount} data uji (" . (100 - $ratio) . "%).");
+        return redirect()->back()->with('success', "Dataset berhasil dibagi: {$trainingCount} data latih ({$ratio}%) dan {$testingCount} data uji (" . (100 - $ratio) . "%).");
     }
 }

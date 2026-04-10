@@ -36,12 +36,6 @@ const submit = () => {
             <h2 class="text-3xl font-extrabold text-slate-800 tracking-tight">Selamat Datang</h2>
             <p class="text-slate-500 mt-2 font-medium">Silakan login untuk mengakses Sistem Pendukung Keputusan Jantung.</p>
         </div>
-
-        <div v-if="status" class="mb-6 rounded-xl bg-emerald-50 p-4 text-sm font-semibold text-emerald-600 border border-emerald-100 flex items-center gap-3">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            {{ status }}
-        </div>
-
         <form @submit.prevent="submit" class="space-y-6">
             <div class="space-y-1.5 focus-within:text-[#00AEEF] transition-colors">
                 <InputLabel for="email" value="Alamat Email" class="font-bold text-slate-700" />

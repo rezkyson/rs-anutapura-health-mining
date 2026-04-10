@@ -30,14 +30,6 @@ const submit = () => {
             address and we will email you a password reset link that will allow
             you to choose a new one.
         </div>
-
-        <div
-            v-if="status"
-            class="mb-4 text-sm font-medium text-green-600"
-        >
-            {{ status }}
-        </div>
-
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="email" value="Email" />

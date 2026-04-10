@@ -4,6 +4,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
+import { useNotifications } from '@/Composables/useNotifications';
 
 defineProps({
     mustVerifyEmail: {
@@ -15,11 +16,24 @@ defineProps({
 });
 
 const user = usePage().props.auth.user;
+const { success } = useNotifications();
 
 const form = useForm({
     name: user.name,
     email: user.email,
 });
+
+const updateProfile = () => {
+    form.patch(route('profile.update'), {
+        preserveScroll: true,
+        onSuccess: () => {
+            success({
+                title: 'Profil diperbarui',
+                message: 'Informasi akun berhasil diperbarui dan langsung tersimpan di sistem.',
+            });
+        },
+    });
+};
 </script>
 
 <template>
@@ -34,10 +48,7 @@ const form = useForm({
             </p>
         </header>
 
-        <form
-            @submit.prevent="form.patch(route('profile.update'))"
-            class="mt-6 space-y-6"
-        >
+        <form @submit.prevent="updateProfile" class="mt-6 space-y-6">
             <div>
                 <InputLabel for="name" value="Name" />
 
@@ -82,30 +93,10 @@ const form = useForm({
                     </Link>
                 </p>
 
-                <div
-                    v-show="status === 'verification-link-sent'"
-                    class="mt-2 text-sm font-medium text-green-600"
-                >
-                    A new verification link has been sent to your email address.
-                </div>
             </div>
 
             <div class="flex items-center gap-4">
                 <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
-
-                <Transition
-                    enter-active-class="transition ease-in-out"
-                    enter-from-class="opacity-0"
-                    leave-active-class="transition ease-in-out"
-                    leave-to-class="opacity-0"
-                >
-                    <p
-                        v-if="form.recentlySuccessful"
-                        class="text-sm text-gray-600"
-                    >
-                        Saved.
-                    </p>
-                </Transition>
             </div>
         </form>
     </section>
