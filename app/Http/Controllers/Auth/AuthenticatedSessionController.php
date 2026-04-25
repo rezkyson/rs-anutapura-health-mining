@@ -33,7 +33,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $homeRoute = Auth::id() === 1 ? 'dashboard' : 'prediction.index';
+
+        return redirect()->intended(route($homeRoute, absolute: false));
     }
 
     /**

@@ -34,10 +34,10 @@ defineProps({
             <div class="backdrop-blur-xl bg-white/70 px-2 py-2 rounded-full border border-white/60 shadow-lg shadow-slate-200/50 flex items-center gap-1 sm:gap-2">
                 <Link
                     v-if="$page.props.auth.user"
-                    :href="route('dashboard')"
+                    :href="$page.props.auth.user.id === 1 ? route('dashboard') : route('prediction.index')"
                     class="px-6 py-2.5 rounded-full font-bold text-sm text-[#00AEEF] hover:bg-white hover:shadow-sm transition-all duration-300"
                 >
-                    Masuk ke Dashboard
+                    {{ $page.props.auth.user.id === 1 ? 'Masuk ke Dashboard' : 'Masuk ke Prediksi' }}
                 </Link>
 
                 <template v-else>
@@ -92,7 +92,7 @@ defineProps({
             <div class="mt-14 flex flex-col sm:flex-row gap-5 sm:gap-6 justify-center w-full max-w-md">
                 <Link
                     v-if="$page.props.auth.user"
-                    :href="route('dashboard')"
+                    :href="$page.props.auth.user.id === 1 ? route('dashboard') : route('prediction.index')"
                     class="group relative inline-flex items-center justify-center px-10 py-4.5 text-lg font-bold text-white transition-all duration-300 bg-gradient-to-br from-[#00AEEF] to-[#0088cc] font-sans rounded-2xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00AEEF] shadow-[0_10px_40px_-10px_rgba(0,174,239,0.5)] border border-white/10"
                 >
                     <span class="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></span>

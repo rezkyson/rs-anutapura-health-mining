@@ -7,6 +7,14 @@ const props = defineProps({
     result: Object,
     probabilities: Object,
     log_probabilities: Object,
+    trainingDataCount: {
+        type: Number,
+        default: 0,
+    },
+    isPredictionReady: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const isCalculating = ref(false);
@@ -20,6 +28,10 @@ const form = useForm({
 });
 
 const submit = () => {
+    if (!props.isPredictionReady) {
+        return;
+    }
+
     isCalculating.value = true;
     form.post(route('prediction.predict'), {
         preserveScroll: true,
@@ -64,6 +76,19 @@ const resetPrediction = () => {
                     <h4 class="font-black text-blue-900 dark:text-blue-300 text-sm tracking-wide">PERHATIAN KLINIS</h4>
                     <p class="text-[13px] text-blue-800/80 dark:text-blue-200/70 leading-relaxed font-medium mt-1">
                         Modul ini dirancang secara eksklusif sebagai <strong>Sistem Pendukung Keputusan (DSS)</strong> untuk membantu spesialis medis. Prediksi berbasis probabilitas ini <strong>TIDAK DAPAT menggantikan penilaian medis, diagnosis formal, atau saran dari dokter bersertifikat.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div v-if="!props.isPredictionReady || form.errors.dataset" class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800/60 rounded-2xl p-5 flex items-start gap-4 shadow-sm">
+                <div class="bg-amber-100 dark:bg-amber-900/50 p-3 rounded-full text-amber-700 dark:text-amber-300 shrink-0 border border-amber-200 dark:border-amber-800">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M4.93 19.07h14.14a2 2 0 001.73-3L13.73 4a2 2 0 00-3.46 0L3.2 16.07a2 2 0 001.73 3z" /></svg>
+                </div>
+                <div>
+                    <h4 class="font-black text-amber-900 dark:text-amber-200 text-sm tracking-wide">DATA LATIH BELUM TERSEDIA</h4>
+                    <p class="text-[13px] text-amber-800/80 dark:text-amber-100/70 leading-relaxed font-medium mt-1">
+                        <span v-if="props.trainingDataCount === 0">Prediksi pasien belum dapat dijalankan sampai admin mengunggah dataset dan menandai data sebagai data latih.</span>
+                        <span v-else>Prediksi pasien membutuhkan data latih yang memiliki dua kelas: Beresiko dan Tidak Beresiko.</span>
                     </p>
                 </div>
             </div>
@@ -176,7 +201,7 @@ const resetPrediction = () => {
                                 </div>
 
                                 <div class="pt-4">
-                                    <button type="submit" :disabled="form.processing || isCalculating" class="group relative w-full flex justify-center py-4 px-4 border border-transparent rounded-2xl shadow-xl shadow-[#00AEEF]/20 text-base font-extrabold text-white bg-gradient-to-r from-[#00AEEF] to-[#0088cc] hover:from-[#009ce6] hover:to-[#007ab8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00AEEF] overflow-hidden transition-all transform hover:-translate-y-0.5">
+                                    <button type="submit" :disabled="form.processing || isCalculating || !props.isPredictionReady" class="group relative w-full flex justify-center py-4 px-4 border border-transparent rounded-2xl shadow-xl shadow-[#00AEEF]/20 text-base font-extrabold text-white bg-gradient-to-r from-[#00AEEF] to-[#0088cc] hover:from-[#009ce6] hover:to-[#007ab8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00AEEF] overflow-hidden transition-all transform hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0">
                                         <!-- Lighting effect inside button -->
                                         <span class="absolute right-0 w-8 h-[300%] bg-white/30 rotate-12 -translate-y-[50%] translate-x-12 opacity-0 group-hover:animate-[shine_1s_ease-in-out]"></span>
                                         
@@ -184,7 +209,8 @@ const resetPrediction = () => {
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                         </svg>
-                                        <span v-if="!isCalculating">Eksekusi Analisis Naive Bayes</span>
+                                        <span v-if="!props.isPredictionReady">Data Latih Belum Siap</span>
+                                        <span v-else-if="!isCalculating">Eksekusi Analisis Naive Bayes</span>
                                         <span v-else>Memproses Kalkulasi Probabilitas...</span>
                                     </button>
                                 </div>

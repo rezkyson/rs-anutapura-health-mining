@@ -16,7 +16,7 @@ class AdminOnly
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check() && auth()->id() !== 1) {
-            return redirect()->route('dashboard');
+            return redirect()->route('prediction.index');
         }
 
         return $next($request);

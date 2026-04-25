@@ -15,7 +15,7 @@ class PatientDatasetController extends Controller
      */
     public function index(): Response
     {
-        $datasets = PatientDataset::orderBy('id', 'asc')->paginate(20);
+        $datasets = PatientDataset::orderBy('id', 'asc')->paginate(10);
         $totalTraining = PatientDataset::where('is_training', true)->count();
         $totalTesting = PatientDataset::where('is_training', false)->count();
 

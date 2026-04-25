@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { Head, router } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { useConfirmDialog } from '@/Composables/useConfirmDialog';
 import { useNotifications } from '@/Composables/useNotifications';
@@ -350,7 +350,7 @@ const confirmDestroy = async (datasetId) => {
                     <nav class="flex gap-1">
                         <template v-for="(link, k) in datasets.links" :key="k">
                             <span v-if="link.url === null" class="px-3 py-1.5 rounded-lg text-sm text-slate-300 dark:text-slate-600 font-bold bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 cursor-not-allowed" v-html="link.label"></span>
-                            <Link v-else :href="link.url" class="px-3 py-1.5 rounded-lg text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-[#00AEEF] focus:ring-offset-1 focus:ring-offset-slate-50" :class="link.active ? 'bg-[#00AEEF] text-white border-transparent shadow-[0_2px_10px_-3px_rgba(0,174,239,0.5)]' : 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-600 hover:text-slate-900 dark:hover:text-white'" v-html="link.label"></Link>
+                            <Link v-else :href="link.url" preserve-scroll class="px-3 py-1.5 rounded-lg text-sm font-bold transition-colors focus:outline-none focus:ring-2 focus:ring-[#00AEEF] focus:ring-offset-1 focus:ring-offset-slate-50" :class="link.active ? 'bg-[#00AEEF] text-white border-transparent shadow-[0_2px_10px_-3px_rgba(0,174,239,0.5)]' : 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-600 hover:text-slate-900 dark:hover:text-white'" v-html="link.label"></Link>
                         </template>
                     </nav>
                 </div>

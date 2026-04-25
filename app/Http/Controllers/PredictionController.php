@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PatientDataset;
 use App\Services\NaiveBayesService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -21,10 +22,16 @@ class PredictionController extends Controller
      */
     public function index(Request $request): Response
     {
+        $trainingDataCount = PatientDataset::where('is_training', true)->count();
+        $hasRiskTraining = PatientDataset::where('is_training', true)->where('risk_result', 1)->exists();
+        $hasNoRiskTraining = PatientDataset::where('is_training', true)->where('risk_result', 0)->exists();
+
         return Inertia::render('Medical/Prediction/Index', [
             'result' => session('result'),
             'probabilities' => session('probabilities'),
             'log_probabilities' => session('log_probabilities'),
+            'trainingDataCount' => $trainingDataCount,
+            'isPredictionReady' => $trainingDataCount > 0 && $hasRiskTraining && $hasNoRiskTraining,
         ]);
     }
 
@@ -33,6 +40,15 @@ class PredictionController extends Controller
      */
     public function predict(Request $request)
     {
+        $hasRiskTraining = PatientDataset::where('is_training', true)->where('risk_result', 1)->exists();
+        $hasNoRiskTraining = PatientDataset::where('is_training', true)->where('risk_result', 0)->exists();
+
+        if (! $hasRiskTraining || ! $hasNoRiskTraining) {
+            return redirect()->back()->withErrors([
+                'dataset' => 'Prediksi belum dapat dijalankan karena data latih harus memiliki kelas Beresiko dan Tidak Beresiko.',
+            ]);
+        }
+
         $validatedData = $request->validate([
             'age' => 'required|integer|min:1|max:150',
             'gender' => 'required|in:L,P',

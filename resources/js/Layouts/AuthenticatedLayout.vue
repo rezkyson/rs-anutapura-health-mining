@@ -26,7 +26,7 @@ useDarkMode(); // Initialize dark mode on layout mount
                     <!-- Left Side: Logo & Main Nav -->
                     <div class="flex items-center gap-10">
                         <!-- Modern Logo Branding -->
-                        <Link href="/dashboard" class="shrink-0 flex items-center gap-3.5 cursor-pointer hover:opacity-80 transition-opacity focus:outline-none">
+                        <Link :href="$page.props.auth.user.id === 1 ? route('dashboard') : route('prediction.index')" class="shrink-0 flex items-center gap-3.5 cursor-pointer hover:opacity-80 transition-opacity focus:outline-none">
                             <div class="relative group">
                                 <div class="absolute -inset-1 bg-gradient-to-r from-[#00AEEF] to-[#00A651] rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
                                 <div class="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-[#00AEEF] to-[#0088cc] flex items-center justify-center shadow-lg shadow-blue-500/30 border border-white/40">
@@ -43,7 +43,7 @@ useDarkMode(); // Initialize dark mode on layout mount
 
                         <!-- Desktop Navigation Links (Pill Style) -->
                         <div class="hidden sm:flex sm:items-center sm:gap-2 p-1.5 bg-slate-100/60 dark:bg-slate-800/60 rounded-full border border-slate-200/60 dark:border-slate-700/60 shadow-inner">
-                            <Link :href="route('dashboard')"
+                            <Link v-if="$page.props.auth.user.id === 1" :href="route('dashboard')"
                                 :class="[
                                     route().current('dashboard') ? 'bg-white dark:bg-slate-900 text-[#00AEEF] shadow-sm shadow-slate-200 dark:shadow-black border-white dark:border-slate-700 ring-1 ring-slate-100 dark:ring-slate-800' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800 border-transparent',
                                     'px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ease-out border'
@@ -129,7 +129,7 @@ useDarkMode(); // Initialize dark mode on layout mount
             <!-- Mobile Dropdown Menu -->
             <div :class="{ 'max-h-96 opacity-100': showingNavigationDropdown, 'max-h-0 opacity-0': !showingNavigationDropdown }" class="sm:hidden overflow-hidden transition-all duration-300 ease-in-out bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-xl shadow-slate-200/50 absolute w-full z-50">
                 <div class="pt-2 pb-4 space-y-1 px-4">
-                    <Link :href="route('dashboard')" :class="[route().current('dashboard') ? 'bg-[#00AEEF]/10 border-l-4 border-[#00AEEF] text-[#00AEEF]' : 'text-slate-600 hover:bg-slate-50 border-transparent', 'block pl-4 pr-4 py-3.5 font-bold text-base rounded-r-xl transition-all']">Dashboard</Link>
+                    <Link v-if="$page.props.auth.user.id === 1" :href="route('dashboard')" :class="[route().current('dashboard') ? 'bg-[#00AEEF]/10 border-l-4 border-[#00AEEF] text-[#00AEEF]' : 'text-slate-600 hover:bg-slate-50 border-transparent', 'block pl-4 pr-4 py-3.5 font-bold text-base rounded-r-xl transition-all']">Dashboard</Link>
                     <Link v-if="$page.props.auth.user.id === 1" :href="route('dataset.index')" :class="[route().current('dataset.*') ? 'bg-[#00AEEF]/10 border-l-4 border-[#00AEEF] text-[#00AEEF]' : 'text-slate-600 hover:bg-slate-50 border-transparent', 'block pl-4 pr-4 py-3.5 font-bold text-base rounded-r-xl transition-all']">Manajemen Dataset</Link>
                     <Link :href="route('prediction.index')" :class="[route().current('prediction.*') ? 'bg-[#00A651]/10 border-l-4 border-[#00A651] text-[#00A651]' : 'text-slate-600 hover:bg-slate-50 border-transparent', 'block pl-4 pr-4 py-3.5 font-bold text-base rounded-r-xl transition-all']">Prediksi Medis</Link>
                 </div>
