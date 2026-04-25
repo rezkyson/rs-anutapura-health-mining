@@ -12,7 +12,7 @@ defineProps({
 </script>
 
 <template>
-    <Head title="RS Anutapura - Sistem Deteksi Jantung" />
+    <Head title="Health Mining - Sistem Deteksi Jantung" />
 
     <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#00AEEF] selection:text-white overflow-hidden bg-slate-50 font-sans">
         <!-- Abstract Animated Background (Premium Feel) -->
@@ -81,7 +81,7 @@ defineProps({
 
             <!-- Title -->
             <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-800 drop-shadow-sm mb-2">
-                RS Anutapura <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00AEEF] to-[#00A651]">Health Mining</span>
+                Health Mining <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00AEEF] to-[#00A651]">Prediction System</span>
             </h1>
             
             <p class="mt-6 text-lg sm:text-2xl text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium">

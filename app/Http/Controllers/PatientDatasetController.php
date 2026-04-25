@@ -83,7 +83,7 @@ class PatientDatasetController extends Controller
 
                 $isTraining = isset($data['is_training']) ? filter_var($data['is_training'], FILTER_VALIDATE_BOOLEAN) : true;
 
-                // Konversi kode gender RS: 1=Laki-laki→L, 0=Perempuan→P
+                // Konversi kode gender: 1=Laki-laki, 0=Perempuan.
                 $genderVal = trim($gender);
                 if ($genderVal === '1' || strtoupper($genderVal) === 'L' || strtoupper($genderVal) === 'LAKI-LAKI') {
                     $genderVal = 'L';

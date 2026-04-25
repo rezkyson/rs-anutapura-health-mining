@@ -31,7 +31,7 @@ import { Link } from '@inertiajs/vue3';
                         </div>
                     </div>
                     <div class="flex flex-col">
-                        <h1 class="text-3xl font-extrabold text-white tracking-tight leading-none">Anutapura</h1>
+                        <h1 class="text-3xl font-extrabold text-white tracking-tight leading-none">Health Mining</h1>
                         <p class="text-[11px] font-bold text-[#00A651] tracking-[0.3em] uppercase mt-1">Health Mining System</p>
                     </div>
                 </div>
@@ -78,7 +78,7 @@ import { Link } from '@inertiajs/vue3';
                                 <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
                             </svg>
                         </div>
-                        <h1 class="text-2xl font-extrabold text-slate-800 tracking-tight leading-none text-center">RS Anutapura</h1>
+                        <h1 class="text-2xl font-extrabold text-slate-800 tracking-tight leading-none text-center">Health Mining</h1>
                         <span class="text-[10px] font-bold text-[#00A651] tracking-[0.2em] uppercase mt-1">Health Mining</span>
                     </Link>
                 </div>
@@ -90,7 +90,7 @@ import { Link } from '@inertiajs/vue3';
 
                 <!-- Footer -->
                 <p class="mt-12 text-center text-xs text-slate-400 font-medium tracking-wide">
-                    Sistem Cerdas Perekam Medis RSAP &copy; 2026.
+                    Sistem Prediksi Medis &copy; 2026.
                 </p>
             </div>
         </div>

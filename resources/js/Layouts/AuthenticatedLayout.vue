@@ -36,8 +36,8 @@ useDarkMode(); // Initialize dark mode on layout mount
                                 </div>
                             </div>
                             <div class="flex flex-col">
-                                <span class="font-extrabold text-2xl tracking-tight text-slate-800 dark:text-white leading-none">Anutapura</span>
-                                <span class="text-xs font-bold text-[#00A651] tracking-[0.2em] uppercase mt-1 opacity-90">Data Mining</span>
+                                <span class="font-extrabold text-2xl tracking-tight text-slate-800 dark:text-white leading-none">Health Mining</span>
+                                <span class="text-xs font-bold text-[#00A651] tracking-[0.2em] uppercase mt-1 opacity-90">Prediction System</span>
                             </div>
                         </Link>
 
@@ -168,7 +168,7 @@ useDarkMode(); // Initialize dark mode on layout mount
         <!-- Subtle App Footer -->
         <footer class="text-center pb-8 pt-16 relative z-10">
             <p class="text-slate-400 text-xs font-bold tracking-wider">
-                &copy; {{ new Date().getFullYear() }} RS ANUTAPURA PALU • INTELLIGENT HEALTH MINING
+                &copy; {{ new Date().getFullYear() }} INTELLIGENT HEALTH MINING
             </p>
         </footer>
         <GlobalNotificationCenter top-offset="6rem" />

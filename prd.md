@@ -6,7 +6,7 @@ Ini adalah projek kosong laravek inertia vue untuk mengembangkan aplikasi dengan
 
 ## 1. Project Overview
 
-Aplikasi ini adalah sistem pendukung keputusan (Decision Support System) untuk memprediksi risiko penyakit jantung berdasarkan data riwayat kesehatan pasien di RS Anutapura Palu. Sistem ini menggunakan **Algoritma Naive Bayes** sebagai mesin klasifikasi utama.
+Aplikasi ini adalah sistem pendukung keputusan (Decision Support System) untuk memprediksi risiko penyakit jantung berdasarkan data riwayat kesehatan pasien. Sistem ini menggunakan **Algoritma Naive Bayes** sebagai mesin klasifikasi utama.
 
 **Tech Stack:**
 
@@ -25,7 +25,7 @@ Aplikasi ini adalah sistem pendukung keputusan (Decision Support System) untuk m
 
 
 2. 
-**Manajemen Dataset**: Mengelola data latih dari RS Anutapura Palu untuk dasar perhitungan probabilitas.
+**Manajemen Dataset**: Mengelola data latih pasien untuk dasar perhitungan probabilitas.
 
 
 3. 
@@ -84,7 +84,7 @@ $$P(C|X) = \frac{P(X|C) \times P(C)}{P(X)}$$
 ### A. Admin - Dataset Management
 
 * 
-**Import Feature**: Mampu mengunggah dataset dari RS Anutapura (format CSV/Excel).
+**Import Feature**: Mampu mengunggah dataset kesehatan pasien (format CSV/Excel).
 
 
 * 
@@ -122,7 +122,7 @@ $$P(C|X) = \frac{P(X|C) \times P(C)}{P(X)}$$
 **Independence Assumption**: Ingat bahwa Naive Bayes menganggap setiap atribut bersifat independen (tidak saling mempengaruhi).
 
 
-* **Data Security**: Karena ini data RS Anutapura, gunakan Middleware Laravel untuk memastikan hanya user yang login yang bisa akses.
+* **Data Security**: Karena ini data kesehatan pasien, gunakan Middleware Laravel untuk memastikan hanya user yang login yang bisa akses.
 
 ---
 

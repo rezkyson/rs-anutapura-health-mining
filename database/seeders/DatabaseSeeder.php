@@ -19,14 +19,14 @@ class DatabaseSeeder extends Seeder
         User::truncate();
 
         User::factory()->create([
-            'name' => 'Admin RS Anutapura',
-            'email' => 'admin@rsap.id',
+            'name' => 'Administrator Sistem',
+            'email' => 'admin@healthmining.test',
             'password' => \Illuminate\Support\Facades\Hash::make('password')
         ]);
 
         User::factory()->create([
             'name' => 'Dokter/Perawat Spesialis',
-            'email' => 'medis@rsap.id',
+            'email' => 'medis@healthmining.test',
             'password' => \Illuminate\Support\Facades\Hash::make('password')
         ]);
     }

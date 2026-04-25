@@ -1,6 +1,6 @@
-UI Design Reference & Instructions (RS Anutapura Palu Edition)
+UI Design Reference & Instructions (Universal Health Mining Edition)
 1. Brand Identity & Color Palette
-Gunakan kode warna berikut yang diekstraksi dari logo RSAP agar aplikasi terlihat konsisten dengan identitas rumah sakit:
+Gunakan kode warna berikut agar aplikasi terlihat konsisten dengan identitas sistem kesehatan digital:
 
 Primary Blue (Sky Blue): #00AEEF (Gunakan untuk Navbar, Header, atau aksen utama).
 
